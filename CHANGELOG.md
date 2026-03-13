@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-03-13
+
+### Fixed
+- Fixed incorrect skills directory for OpenClaw (updated from `~/.moltbot/skills` to `~/.openclaw/skills`).
+
 ## [0.2.0] - 2026-02-01
 
 ### Added
