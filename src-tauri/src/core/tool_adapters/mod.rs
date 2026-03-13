@@ -171,9 +171,9 @@ pub fn default_tool_adapters() -> Vec<ToolAdapter> {
         ToolAdapter {
             id: ToolId::Openclaw,
             display_name: "OpenClaw",
-            // add-skill global path: ~/.moltbot/skills/
-            relative_skills_dir: ".moltbot/skills",
-            relative_detect_dir: ".moltbot",
+            // add-skill global path: ~/.openclaw/skills/
+            relative_skills_dir: ".openclaw/skills",
+            relative_detect_dir: ".openclaw",
         },
         ToolAdapter {
             id: ToolId::Cline,

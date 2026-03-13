@@ -135,7 +135,7 @@ Adapter definitions: `src-tauri/src/core/tool_adapters/mod.rs`.
 | `amp` | Amp | `.config/agents/skills` | `.config/agents` |
 | `kimi_cli` | Kimi Code CLI | `.config/agents/skills` | `.config/agents` |
 | `augment` | Augment | `.augment/rules` | `.augment` |
-| `openclaw` | OpenClaw | `.moltbot/skills` | `.moltbot` |
+| `openclaw` | OpenClaw | `.openclaw/skills` | `.openclaw` |
 | `cline` | Cline | `.cline/skills` | `.cline` |
 | `codebuddy` | CodeBuddy | `.codebuddy/skills` | `.codebuddy` |
 | `command_code` | Command Code | `.commandcode/skills` | `.commandcode` |
