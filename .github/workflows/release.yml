@@ -343,107 +343,107 @@ jobs:
           path: release-assets/*
           if-no-files-found: error
 
-  assemble-updater-json:
-    name: Assemble updater.json
-    runs-on: macos-14
-    needs: release
-    permissions:
-      contents: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+  # assemble-updater-json:
+  #   name: Assemble updater.json
+  #   runs-on: macos-14
+  #   needs: release
+  #   permissions:
+  #     contents: write
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v4
 
-      - name: Download workflow artifacts
-        uses: actions/download-artifact@v4
-        with:
-          path: dl
-          pattern: release-assets-*
-          merge-multiple: true
+  #     - name: Download workflow artifacts
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         path: dl
+  #         pattern: release-assets-*
+  #         merge-multiple: true
 
-      - name: Generate updater.json
-        env:
-          REPO: ${{ github.repository }}
-          TAG: ${{ github.ref_name }}
-        shell: bash
-        run: |
-          set -euo pipefail
+  #     - name: Generate updater.json
+  #       env:
+  #         REPO: ${{ github.repository }}
+  #         TAG: ${{ github.ref_name }}
+  #       shell: bash
+  #       run: |
+  #         set -euo pipefail
 
-          VERSION="${TAG#v}"
-          PUB_DATE=$(date -u +%Y-%m-%dT%H:%M:%SZ)
-          base_url="https://github.com/$REPO/releases/download/$TAG"
+  #         VERSION="${TAG#v}"
+  #         PUB_DATE=$(date -u +%Y-%m-%dT%H:%M:%SZ)
+  #         base_url="https://github.com/$REPO/releases/download/$TAG"
 
-          mac_arm_url=""; mac_arm_sig=""
-          mac_x64_url=""; mac_x64_sig=""
+  #         mac_arm_url=""; mac_arm_sig=""
+  #         mac_x64_url=""; mac_x64_sig=""
 
-          ls -la dl || true
+  #         ls -la dl || true
 
-          shopt -s nullglob
-          for sig in dl/*.sig; do
-            base=${sig%.sig}
-            fname=$(basename "$base")
-            url="$base_url/$fname"
-            sig_content=$(tr -d '\r\n' < "$sig")
-            case "$fname" in
-              *-macOS-aarch64.tar.gz)
-                mac_arm_url="$url"; mac_arm_sig="$sig_content";;
-              *-macOS-x86_64.tar.gz)
-                mac_x64_url="$url"; mac_x64_sig="$sig_content";;
-            esac
-          done
+  #         shopt -s nullglob
+  #         for sig in dl/*.sig; do
+  #           base=${sig%.sig}
+  #           fname=$(basename "$base")
+  #           url="$base_url/$fname"
+  #           sig_content=$(tr -d '\r\n' < "$sig")
+  #           case "$fname" in
+  #             *-macOS-aarch64.tar.gz)
+  #               mac_arm_url="$url"; mac_arm_sig="$sig_content";;
+  #             *-macOS-x86_64.tar.gz)
+  #               mac_x64_url="$url"; mac_x64_sig="$sig_content";;
+  #           esac
+  #         done
 
-          if [ -z "${mac_arm_url:-}" ] && [ -z "${mac_x64_url:-}" ]; then
-            echo "❌ 未找到任何 macOS updater 签名（dl/*.sig）; 请确认构建产物包含 *.tar.gz.sig" >&2
-            exit 1
-          fi
+  #         if [ -z "${mac_arm_url:-}" ] && [ -z "${mac_x64_url:-}" ]; then
+  #           echo "❌ 未找到任何 macOS updater 签名（dl/*.sig）; 请确认构建产物包含 *.tar.gz.sig" >&2
+  #           exit 1
+  #         fi
 
-          tmp_json=$(mktemp)
-          {
-            echo '{'
-            echo "  \"version\": \"$VERSION\","
-            echo "  \"notes\": \"Release $TAG\","
-            echo "  \"pub_date\": \"$PUB_DATE\","
-            echo '  "platforms": {'
-            first=1
-            if [ -n "${mac_arm_url:-}" ] && [ -n "${mac_arm_sig:-}" ]; then
-              [ $first -eq 0 ] && echo ','
-              echo "    \"darwin-aarch64\": {\"signature\": \"$mac_arm_sig\", \"url\": \"$mac_arm_url\"}"
-              first=0
-            fi
-            if [ -n "${mac_x64_url:-}" ] && [ -n "${mac_x64_sig:-}" ]; then
-              [ $first -eq 0 ] && echo ','
-              echo "    \"darwin-x86_64\": {\"signature\": \"$mac_x64_sig\", \"url\": \"$mac_x64_url\"}"
-              first=0
-            fi
-            echo '  }'
-            echo '}'
-          } > "$tmp_json"
+  #         tmp_json=$(mktemp)
+  #         {
+  #           echo '{'
+  #           echo "  \"version\": \"$VERSION\","
+  #           echo "  \"notes\": \"Release $TAG\","
+  #           echo "  \"pub_date\": \"$PUB_DATE\","
+  #           echo '  "platforms": {'
+  #           first=1
+  #           if [ -n "${mac_arm_url:-}" ] && [ -n "${mac_arm_sig:-}" ]; then
+  #             [ $first -eq 0 ] && echo ','
+  #             echo "    \"darwin-aarch64\": {\"signature\": \"$mac_arm_sig\", \"url\": \"$mac_arm_url\"}"
+  #             first=0
+  #           fi
+  #           if [ -n "${mac_x64_url:-}" ] && [ -n "${mac_x64_sig:-}" ]; then
+  #             [ $first -eq 0 ] && echo ','
+  #             echo "    \"darwin-x86_64\": {\"signature\": \"$mac_x64_sig\", \"url\": \"$mac_x64_url\"}"
+  #             first=0
+  #           fi
+  #           echo '  }'
+  #           echo '}'
+  #         } > "$tmp_json"
 
-          cat "$tmp_json"
-          mv "$tmp_json" updater.json
+  #         cat "$tmp_json"
+  #         mv "$tmp_json" updater.json
 
-      - name: Generate release notes from changelog
-        env:
-          TAG: ${{ github.ref_name }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          node scripts/extract-changelog.mjs "$TAG" CHANGELOG.md > release-notes.md
-          {
-            echo
-            echo '**Windows Note:** Windows SmartScreen may show a warning during installation. This is normal for unsigned executables. The application is safe to use.'
-            echo
-            echo '**macOS Note:** macOS Gatekeeper workaround (only needed on some macOS versions): `xattr -cr "/Applications/Skills Hub.app"` (https://v2.tauri.app/distribute/#macos).'
-          } >> release-notes.md
+  #     - name: Generate release notes from changelog
+  #       env:
+  #         TAG: ${{ github.ref_name }}
+  #       shell: bash
+  #       run: |
+  #         set -euo pipefail
+  #         node scripts/extract-changelog.mjs "$TAG" CHANGELOG.md > release-notes.md
+  #         {
+  #           echo
+  #           echo '**Windows Note:** Windows SmartScreen may show a warning during installation. This is normal for unsigned executables. The application is safe to use.'
+  #           echo
+  #           echo '**macOS Note:** macOS Gatekeeper workaround (only needed on some macOS versions): `xattr -cr "/Applications/Skills Hub.app"` (https://v2.tauri.app/distribute/#macos).'
+  #         } >> release-notes.md
 
-      - name: Create/Update GitHub Release
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: ${{ github.ref_name }}
-          name: Skills Hub ${{ github.ref_name }}
-          prerelease: ${{ contains(github.ref_name, '-') }}
-          body_path: release-notes.md
-          files: |
-            dl/*
-            updater.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  #     - name: Create/Update GitHub Release
+  #       uses: softprops/action-gh-release@v2
+  #       with:
+  #         tag_name: ${{ github.ref_name }}
+  #         name: Skills Hub ${{ github.ref_name }}
+  #         prerelease: ${{ contains(github.ref_name, '-') }}
+  #         body_path: release-notes.md
+  #         files: |
+  #           dl/*
+  #           updater.json
+  #       env:
+  #         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
