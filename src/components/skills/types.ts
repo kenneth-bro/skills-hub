@@ -27,6 +27,7 @@ export type ToolOption = {
 export type ManagedSkill = {
   id: string
   name: string
+  description?: string | null
   source_type: string
   source_ref?: string | null
   central_path: string

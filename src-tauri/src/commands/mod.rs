@@ -647,6 +647,7 @@ pub async fn import_existing_skill(
 pub struct ManagedSkillDto {
     pub id: String,
     pub name: String,
+    pub description: Option<String>,
     pub source_type: String,
     pub source_ref: Option<String>,
     pub central_path: String,
@@ -777,6 +778,7 @@ fn get_managed_skills_impl(store: &SkillStore) -> Result<Vec<ManagedSkillDto>, S
             ManagedSkillDto {
                 id: skill.id,
                 name: skill.name,
+                description: skill.description,
                 source_type: skill.source_type,
                 source_ref: skill.source_ref,
                 central_path: skill.central_path,

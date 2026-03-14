@@ -2,6 +2,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
 import { useTranslation } from 'react-i18next'
 import { Toaster, toast } from 'sonner'
+import ExplorePage from './components/skills/ExplorePage'
 import FilterBar from './components/skills/FilterBar'
 import Header from './components/skills/Header'
 import LoadingOverlay from './components/skills/LoadingOverlay'
@@ -79,7 +80,8 @@ function App() {
   } | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState<'updated' | 'name'>('updated')
-  const [addModalTab, setAddModalTab] = useState<'local' | 'git' | 'explore'>('explore')
+  const [activeView, setActiveView] = useState<'myskills' | 'explore'>('myskills')
+  const [addModalTab, setAddModalTab] = useState<'local' | 'git'>('git')
   const [featuredSkills, setFeaturedSkills] = useState<FeaturedSkillDto[]>([])
   const [featuredLoading, setFeaturedLoading] = useState(false)
   const [exploreFilter, setExploreFilter] = useState('')
@@ -108,6 +110,14 @@ function App() {
   const formatErrorMessage = useCallback(
     (raw: string) => {
       if (raw.includes('skill already exists in central repo')) {
+        // Extract skill name from path like: skill already exists in central repo: "/path/to/react-best-practices"
+        const pathMatch = raw.match(/central repo:\s*"?([^"]+)"?/)
+        if (pathMatch) {
+          const skillName = pathMatch[1].split('/').pop() ?? ''
+          if (skillName) {
+            return t('errors.skillExistsInHubNamed', { name: skillName })
+          }
+        }
         return t('errors.skillExistsInHub')
       }
       if (raw.startsWith('TARGET_EXISTS|')) {
@@ -531,10 +541,15 @@ function App() {
     }
   }, [featuredSkills.length, invokeTauri])
 
-  const handleSelectFeaturedSkill = useCallback((sourceUrl: string) => {
-    setGitUrl(sourceUrl)
-    setAddModalTab('git')
-  }, [])
+  const handleViewChange = useCallback(
+    (view: 'myskills' | 'explore') => {
+      setActiveView(view)
+      if (view === 'explore') {
+        loadFeaturedSkills()
+      }
+    },
+    [loadFeaturedSkills],
+  )
 
   const handleExploreFilterChange = useCallback(
     (value: string) => {
@@ -567,16 +582,10 @@ function App() {
     [invokeTauri, t],
   )
 
-  const handleSelectSearchResult = useCallback((sourceUrl: string, skillName: string) => {
-    setGitUrl(sourceUrl)
-    setAutoSelectSkillName(skillName)
-    setAddModalTab('git')
-  }, [])
 
   const handleOpenAdd = useCallback(() => {
     setShowAddModal(true)
-    loadFeaturedSkills()
-  }, [loadFeaturedSkills])
+  }, [])
 
   const handleCloseAdd = useCallback(() => {
     if (!loading) setShowAddModal(false)
@@ -1198,6 +1207,34 @@ function App() {
     }
   }
 
+  const [exploreInstallTrigger, setExploreInstallTrigger] = useState(0)
+  const exploreInstallUrlRef = useRef<string | null>(null)
+
+  const handleExploreInstall = useCallback(
+    (sourceUrl: string, skillName?: string) => {
+      setGitUrl(sourceUrl)
+      if (skillName) setAutoSelectSkillName(skillName)
+      if (toolStatus) {
+        const targets: Record<string, boolean> = {}
+        for (const id of toolStatus.installed) {
+          targets[id] = true
+        }
+        setSyncTargets(targets)
+      }
+      exploreInstallUrlRef.current = sourceUrl
+      setExploreInstallTrigger((n) => n + 1)
+    },
+    [toolStatus],
+  )
+
+  useEffect(() => {
+    if (exploreInstallTrigger > 0 && exploreInstallUrlRef.current && !loading) {
+      exploreInstallUrlRef.current = null
+      void handleCreateGit()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exploreInstallTrigger])
+
   const handleInstallSelectedLocalCandidates = async () => {
     const selected = localCandidates.filter(
       (c) => c.valid && localCandidateSelected[c.subpath],
@@ -1684,38 +1721,55 @@ function App() {
       <Header
         language={language}
         loading={loading}
+        activeView={activeView}
         onToggleLanguage={toggleLanguage}
         onOpenSettings={handleOpenSettings}
-        onOpenAdd={handleOpenAdd}
+        onViewChange={handleViewChange}
         t={t}
       />
 
       <main className="skills-main">
-        <div className="dashboard-stack">
-          <FilterBar
-            sortBy={sortBy}
-            searchQuery={searchQuery}
-            loading={loading}
-            onSortChange={handleSortChange}
-            onSearchChange={handleSearchChange}
-            onRefresh={handleRefresh}
-            t={t}
-          />
-          <SkillsList
-            plan={plan}
-            visibleSkills={visibleSkills}
-            installedTools={installedTools}
-            loading={loading}
-            getGithubInfo={getGithubInfo}
-            getSkillSourceLabel={getSkillSourceLabel}
-            formatRelative={formatRelative}
-            onReviewImport={handleReviewImport}
-            onUpdateSkill={handleUpdateSkill}
-            onDeleteSkill={handleDeletePrompt}
-            onToggleTool={handleToggleToolForSkill}
-            t={t}
-          />
+        {activeView === 'myskills' ? (
+          <div className="dashboard-stack">
+            <FilterBar
+              sortBy={sortBy}
+              searchQuery={searchQuery}
+              loading={loading}
+              onSortChange={handleSortChange}
+              onSearchChange={handleSearchChange}
+              onRefresh={handleRefresh}
+              t={t}
+            />
+            <SkillsList
+              plan={plan}
+              visibleSkills={visibleSkills}
+              installedTools={installedTools}
+              loading={loading}
+              getGithubInfo={getGithubInfo}
+              getSkillSourceLabel={getSkillSourceLabel}
+              formatRelative={formatRelative}
+              onReviewImport={handleReviewImport}
+              onUpdateSkill={handleUpdateSkill}
+              onDeleteSkill={handleDeletePrompt}
+              onToggleTool={handleToggleToolForSkill}
+              t={t}
+            />
           </div>
+        ) : (
+          <ExplorePage
+            featuredSkills={featuredSkills}
+            featuredLoading={featuredLoading}
+            exploreFilter={exploreFilter}
+            searchResults={searchResults}
+            searchLoading={searchLoading}
+            managedSkills={managedSkills}
+            loading={loading}
+            onExploreFilterChange={handleExploreFilterChange}
+            onInstallSkill={handleExploreInstall}
+            onOpenManualAdd={handleOpenAdd}
+            t={t}
+          />
+        )}
       </main>
 
       <AddSkillModal
@@ -1730,14 +1784,6 @@ function App() {
         syncTargets={syncTargets}
         installedTools={installedTools}
         toolStatus={toolStatus}
-        featuredSkills={featuredSkills}
-        featuredLoading={featuredLoading}
-        exploreFilter={exploreFilter}
-        searchResults={searchResults}
-        searchLoading={searchLoading}
-        onExploreFilterChange={handleExploreFilterChange}
-        onSelectFeaturedSkill={handleSelectFeaturedSkill}
-        onSelectSearchResult={handleSelectSearchResult}
         onRequestClose={handleCloseAdd}
         onTabChange={setAddModalTab}
         onLocalPathChange={setLocalPath}

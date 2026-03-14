@@ -22,6 +22,8 @@ type SkillCardProps = {
   t: TFunction
 }
 
+const MAX_VISIBLE_BADGES = 5
+
 const SkillCard = ({
   skill,
   installedTools,
@@ -55,6 +57,21 @@ const SkillCard = ({
     }
   }
 
+  // Split tools into synced and remaining for badge display
+  const syncedTools: { tool: ToolOption; target: (typeof skill.targets)[0] }[] = []
+  const unsyncedTools: ToolOption[] = []
+  for (const tool of installedTools) {
+    const target = skill.targets.find((tgt) => tgt.tool === tool.id)
+    if (target) {
+      syncedTools.push({ tool, target })
+    } else {
+      unsyncedTools.push(tool)
+    }
+  }
+
+  const visibleSynced = syncedTools.slice(0, MAX_VISIBLE_BADGES)
+  const remainingCount = syncedTools.length - visibleSynced.length
+
   return (
     <div className="skill-card">
       <div className="skill-icon">{iconNode}</div>
@@ -62,6 +79,9 @@ const SkillCard = ({
         <div className="skill-header-row">
           <div className="skill-name">{skill.name}</div>
         </div>
+        {skill.description ? (
+          <div className="skill-desc">{skill.description}</div>
+        ) : null}
         <div className="skill-meta-row">
           {github ? (
             <div className="skill-source">
@@ -102,27 +122,34 @@ const SkillCard = ({
           </div>
         </div>
         <div className="tool-matrix">
-          {installedTools.map((tool) => {
-            const target = skill.targets.find((t) => t.tool === tool.id)
-            const synced = Boolean(target)
-            const state = synced ? 'active' : 'inactive'
-            return (
-              <button
-                key={`${skill.id}-${tool.id}`}
-                type="button"
-                className={`tool-pill ${state}`}
-                title={
-                  synced
-                    ? `${tool.label} (${target?.mode ?? t('unknown')})`
-                    : tool.label
-                }
-                onClick={() => void onToggleTool(skill, tool.id)}
-              >
-                {synced ? <span className="status-badge" /> : null}
-                {tool.label}
-              </button>
-            )
-          })}
+          {visibleSynced.map(({ tool, target }) => (
+            <button
+              key={`${skill.id}-${tool.id}`}
+              type="button"
+              className="tool-pill active"
+              title={`${tool.label} (${target.mode ?? t('unknown')})`}
+              onClick={() => void onToggleTool(skill, tool.id)}
+            >
+              <span className="status-badge" />
+              {tool.label}
+            </button>
+          ))}
+          {remainingCount > 0 ? (
+            <span className="tool-pill more-badge">
+              {t('moreTools', { count: remainingCount })}
+            </span>
+          ) : null}
+          {unsyncedTools.map((tool) => (
+            <button
+              key={`${skill.id}-${tool.id}`}
+              type="button"
+              className="tool-pill inactive"
+              title={tool.label}
+              onClick={() => void onToggleTool(skill, tool.id)}
+            >
+              {tool.label}
+            </button>
+          ))}
         </div>
       </div>
       <div className="skill-actions-col">

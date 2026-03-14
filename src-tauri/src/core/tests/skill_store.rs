@@ -14,6 +14,7 @@ fn make_skill(id: &str, name: &str, central_path: &str, updated_at: i64) -> Skil
     SkillRecord {
         id: id.to_string(),
         name: name.to_string(),
+        description: None,
         source_type: "local".to_string(),
         source_ref: Some("/tmp/source".to_string()),
         source_revision: None,

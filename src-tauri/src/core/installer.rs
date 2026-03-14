@@ -53,10 +53,12 @@ pub fn install_local_skill<R: tauri::Runtime>(
 
     let now = now_ms();
     let content_hash = compute_content_hash(&central_path);
+    let description = parse_skill_md(&central_path.join("SKILL.md")).and_then(|(_, desc)| desc);
 
     let record = SkillRecord {
         id: Uuid::new_v4().to_string(),
         name,
+        description,
         source_type: "local".to_string(),
         source_ref: Some(source_path.to_string_lossy().to_string()),
         source_revision: None,
@@ -145,10 +147,12 @@ pub fn install_git_skill<R: tauri::Runtime>(
     let revision = rev;
     let now = now_ms();
     let content_hash = compute_content_hash(&central_path);
+    let description = parse_skill_md(&central_path.join("SKILL.md")).and_then(|(_, desc)| desc);
 
     let record = SkillRecord {
         id: Uuid::new_v4().to_string(),
         name,
+        description,
         source_type: "git".to_string(),
         source_ref: Some(repo_url.to_string()),
         source_revision: Some(revision),
@@ -422,11 +426,15 @@ pub fn update_managed_skill_from_source<R: tauri::Runtime>(
     }
 
     let content_hash = compute_content_hash(&central_path);
+    let description = parse_skill_md(&central_path.join("SKILL.md"))
+        .and_then(|(_, desc)| desc)
+        .or(record.description.clone());
 
     // Update DB skill row.
     let updated = SkillRecord {
         id: record.id.clone(),
         name: record.name.clone(),
+        description,
         source_type: record.source_type.clone(),
         source_ref: record.source_ref.clone(),
         source_revision: new_revision.clone().or(record.source_revision.clone()),
@@ -736,9 +744,11 @@ pub fn install_git_skill_from_selection<R: tauri::Runtime>(
 
     let now = now_ms();
     let content_hash = compute_content_hash(&central_path);
+    let description = parse_skill_md(&central_path.join("SKILL.md")).and_then(|(_, desc)| desc);
     let record = SkillRecord {
         id: Uuid::new_v4().to_string(),
         name: display_name,
+        description,
         source_type: "git".to_string(),
         source_ref: Some(repo_url.to_string()),
         source_revision: Some(revision),
@@ -888,6 +898,22 @@ fn repo_cache_key(clone_url: &str, branch: Option<&str>) -> String {
         hasher.update(b.as_bytes());
     }
     hex::encode(hasher.finalize())
+}
+
+/// Backfill description for skills that have NULL description in the database.
+/// Reads SKILL.md from the central_path of each skill.
+pub fn backfill_skill_descriptions(store: &SkillStore) {
+    let skills = match store.list_skills_missing_description() {
+        Ok(s) => s,
+        Err(_) => return,
+    };
+    for skill in skills {
+        let central = std::path::Path::new(&skill.central_path);
+        let skill_md = central.join("SKILL.md");
+        if let Some((_, Some(desc))) = parse_skill_md(&skill_md) {
+            let _ = store.update_skill_description(&skill.id, Some(&desc));
+        }
+    }
 }
 
 fn parse_skill_md(path: &Path) -> Option<(String, Option<String>)> {

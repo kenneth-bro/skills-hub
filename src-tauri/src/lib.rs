@@ -29,6 +29,9 @@ pub fn run() {
             store.ensure_schema().map_err(tauri::Error::from)?;
             app.manage(store.clone());
 
+            // Backfill description for skills that were installed before V2 schema.
+            core::installer::backfill_skill_descriptions(&store);
+
             // Best-effort cleanup of our own old git temp directories.
             // Safety:
             // - Only deletes directories that match prefix `skills-hub-git-*`
