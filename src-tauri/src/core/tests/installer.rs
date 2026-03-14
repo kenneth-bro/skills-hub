@@ -166,16 +166,16 @@ fn installs_local_skill_and_updates_from_source() {
     );
     assert_eq!(fs::read(target.join("a.txt")).unwrap(), b"v2");
 
-    // Installing with the same name should auto-deduplicate (fixes #12).
-    let res2 = super::install_local_skill(
+    let err = match super::install_local_skill(
         app.handle(),
         &store,
         source.path(),
         Some("local1".to_string()),
-    )
-    .unwrap();
-    assert_eq!(res2.name, "local1-2", "second install should get suffix -2");
-    assert!(res2.central_path.exists());
+    ) {
+        Ok(_) => panic!("expected error"),
+        Err(e) => e,
+    };
+    assert!(format!("{:#}", err).contains("skill already exists"));
 }
 
 #[test]

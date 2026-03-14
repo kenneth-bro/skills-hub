@@ -44,7 +44,11 @@ pub fn install_local_skill<R: tauri::Runtime>(
 
     let central_dir = resolve_central_repo_path(app, store)?;
     ensure_central_repo(&central_dir)?;
-    let (name, central_path) = deduplicate_name(&central_dir, &name);
+    let central_path = central_dir.join(&name);
+
+    if central_path.exists() {
+        anyhow::bail!("skill already exists in central repo: {:?}", central_path);
+    }
 
     copy_dir_recursive(source_path, &central_path)
         .with_context(|| format!("copy {:?} -> {:?}", source_path, central_path))?;
@@ -102,9 +106,11 @@ pub fn install_git_skill<R: tauri::Runtime>(
 
     let central_dir = resolve_central_repo_path(app, store)?;
     ensure_central_repo(&central_dir)?;
-    let deduped = deduplicate_name(&central_dir, &name);
-    name = deduped.0;
-    let mut central_path = deduped.1;
+    let mut central_path = central_dir.join(&name);
+
+    if central_path.exists() {
+        anyhow::bail!("skill already exists in central repo: {:?}", central_path);
+    }
 
     // Fast path: for GitHub URLs with a subpath, download via API instead of cloning.
     let github_token = store.get_setting("github_token")?.unwrap_or_default();
@@ -404,26 +410,6 @@ fn derive_name_from_repo_url(repo_url: &str) -> String {
     } else {
         name
     }
-}
-
-/// Deduplicate a skill name by appending a numeric suffix if the path already exists.
-/// e.g. "my-skill" → "my-skill-2" → "my-skill-3" etc.
-fn deduplicate_name(central_dir: &Path, name: &str) -> (String, PathBuf) {
-    let candidate = central_dir.join(name);
-    if !candidate.exists() {
-        return (name.to_string(), candidate);
-    }
-    for i in 2..=100 {
-        let suffixed = format!("{}-{}", name, i);
-        let candidate = central_dir.join(&suffixed);
-        if !candidate.exists() {
-            return (suffixed, candidate);
-        }
-    }
-    // Fallback: use UUID suffix (extremely unlikely to reach here)
-    let fallback = format!("{}-{}", name, &Uuid::new_v4().to_string()[..8]);
-    let candidate = central_dir.join(&fallback);
-    (fallback, candidate)
 }
 
 /// Count skill directories in a repo: checks both `skills/*` and root-level subdirectories.
@@ -918,9 +904,10 @@ pub fn install_git_skill_from_selection<R: tauri::Runtime>(
 
     let central_dir = resolve_central_repo_path(app, store)?;
     ensure_central_repo(&central_dir)?;
-    let deduped = deduplicate_name(&central_dir, &display_name);
-    display_name = deduped.0;
-    let mut central_path = deduped.1;
+    let mut central_path = central_dir.join(&display_name);
+    if central_path.exists() {
+        anyhow::bail!("skill already exists in central repo: {:?}", central_path);
+    }
 
     let (repo_dir, revision) = clone_to_cache(
         app,
