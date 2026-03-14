@@ -422,6 +422,11 @@
   margin-top: 10px;
 }
 
+.tool-matrix.collapsed {
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
 .tool-pill {
   height: 22px;
   padding: 0 8px;
@@ -474,7 +479,13 @@
   color: var(--text-tertiary);
   border: 1px solid var(--border-subtle);
   font-size: 11px;
-  cursor: default;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.tool-pill.more-badge:hover {
+  background: var(--bg-element-hover);
+  color: var(--text-secondary);
 }
 
 .tool-pill-toggle {

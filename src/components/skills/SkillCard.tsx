@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { Box, Copy, Folder, Github, RefreshCw, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 import type { TFunction } from 'i18next'
@@ -69,8 +69,10 @@ const SkillCard = ({
     }
   }
 
-  const visibleSynced = syncedTools.slice(0, MAX_VISIBLE_BADGES)
-  const remainingCount = syncedTools.length - visibleSynced.length
+  const [expanded, setExpanded] = useState(false)
+  const needsCollapse = syncedTools.length > MAX_VISIBLE_BADGES
+  const visibleSynced = expanded ? syncedTools : syncedTools.slice(0, MAX_VISIBLE_BADGES)
+  const remainingCount = syncedTools.length - MAX_VISIBLE_BADGES
 
   return (
     <div className="skill-card">
@@ -121,7 +123,7 @@ const SkillCard = ({
             {formatRelative(skill.updated_at)}
           </div>
         </div>
-        <div className="tool-matrix">
+        <div className={`tool-matrix${!expanded && needsCollapse ? ' collapsed' : ''}`}>
           {visibleSynced.map(({ tool, target }) => (
             <button
               key={`${skill.id}-${tool.id}`}
@@ -134,22 +136,27 @@ const SkillCard = ({
               {tool.label}
             </button>
           ))}
-          {remainingCount > 0 ? (
-            <span className="tool-pill more-badge">
-              {t('moreTools', { count: remainingCount })}
-            </span>
-          ) : null}
-          {unsyncedTools.map((tool) => (
+          {needsCollapse && !expanded ? (
             <button
-              key={`${skill.id}-${tool.id}`}
               type="button"
-              className="tool-pill inactive"
-              title={tool.label}
-              onClick={() => void onToggleTool(skill, tool.id)}
+              className="tool-pill more-badge"
+              onClick={() => setExpanded(true)}
             >
-              {tool.label}
+              {t('moreTools', { count: remainingCount })}
             </button>
-          ))}
+          ) : null}
+          {expanded &&
+            unsyncedTools.map((tool) => (
+              <button
+                key={`${skill.id}-${tool.id}`}
+                type="button"
+                className="tool-pill inactive"
+                title={tool.label}
+                onClick={() => void onToggleTool(skill, tool.id)}
+              >
+                {tool.label}
+              </button>
+            ))}
         </div>
       </div>
       <div className="skill-actions-col">
