@@ -1,8 +1,10 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import './App.css'
 import { useTranslation } from 'react-i18next'
 import { Toaster, toast } from 'sonner'
+import ExplorePage from './components/skills/ExplorePage'
 import FilterBar from './components/skills/FilterBar'
+import SkillDetailView from './components/skills/SkillDetailView'
 import Header from './components/skills/Header'
 import LoadingOverlay from './components/skills/LoadingOverlay'
 import SkillsList from './components/skills/SkillsList'
@@ -15,11 +17,13 @@ import NewToolsModal from './components/skills/modals/NewToolsModal'
 import SharedDirModal from './components/skills/modals/SharedDirModal'
 import SettingsModal from './components/skills/modals/SettingsModal'
 import type {
+  FeaturedSkillDto,
   GitSkillCandidate,
   InstallResultDto,
   LocalSkillCandidate,
   ManagedSkill,
   OnboardingPlan,
+  OnlineSkillDto,
   ToolOption,
   ToolStatusDto,
   UpdateResultDto,
@@ -77,7 +81,16 @@ function App() {
   } | null>(null)
   const [searchQuery, setSearchQuery] = useState('')
   const [sortBy, setSortBy] = useState<'updated' | 'name'>('updated')
+  const [activeView, setActiveView] = useState<'myskills' | 'explore' | 'detail'>('myskills')
+  const [detailSkill, setDetailSkill] = useState<ManagedSkill | null>(null)
   const [addModalTab, setAddModalTab] = useState<'local' | 'git'>('git')
+  const [featuredSkills, setFeaturedSkills] = useState<FeaturedSkillDto[]>([])
+  const [featuredLoading, setFeaturedLoading] = useState(false)
+  const [exploreFilter, setExploreFilter] = useState('')
+  const [searchResults, setSearchResults] = useState<OnlineSkillDto[]>([])
+  const [searchLoading, setSearchLoading] = useState(false)
+  const searchTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+  const [autoSelectSkillName, setAutoSelectSkillName] = useState<string | null>(null)
 
   const isTauri =
     typeof window !== 'undefined' &&
@@ -98,7 +111,18 @@ function App() {
   )
   const formatErrorMessage = useCallback(
     (raw: string) => {
+      if (raw.includes('CANCELLED|')) {
+        return '' // Silently ignore cancelled operations
+      }
       if (raw.includes('skill already exists in central repo')) {
+        // Extract skill name from path like: skill already exists in central repo: "/path/to/react-best-practices"
+        const pathMatch = raw.match(/central repo:\s*"?([^"]+)"?/)
+        if (pathMatch) {
+          const skillName = pathMatch[1].split('/').pop() ?? ''
+          if (skillName) {
+            return t('errors.skillExistsInHubNamed', { name: skillName })
+          }
+        }
         return t('errors.skillExistsInHub')
       }
       if (raw.startsWith('TARGET_EXISTS|')) {
@@ -106,6 +130,10 @@ function App() {
       }
       if (raw.startsWith('TOOL_NOT_INSTALLED|')) {
         return t('errors.toolNotInstalled')
+      }
+      if (raw.startsWith('TOOL_NOT_WRITABLE|')) {
+        const parts = raw.split('|')
+        return t('errors.toolNotWritable', { tool: parts[1] ?? '', path: parts[2] ?? '' })
       }
       if (raw.includes('未在该仓库中发现可导入的 Skills')) {
         return t('errors.noSkillsFoundInRepo')
@@ -309,6 +337,13 @@ function App() {
   }, [isTauri, invokeTauri])
 
   useEffect(() => {
+    if (!isTauri) return
+    invokeTauri<string>('get_github_token')
+      .then((token) => setGithubToken(token))
+      .catch(() => {})
+  }, [isTauri, invokeTauri])
+
+  useEffect(() => {
     if (isTauri) {
       void loadPlan()
     }
@@ -322,7 +357,8 @@ function App() {
 
   useEffect(() => {
     if (!error) return
-    toast.error(formatErrorMessage(error), { duration: 2600 })
+    const msg = formatErrorMessage(error)
+    if (msg) toast.error(msg, { duration: 2600 })
     setError(null)
     setActionMessage(null)
   }, [error, formatErrorMessage])
@@ -412,6 +448,7 @@ function App() {
   const [storagePath, setStoragePath] = useState<string>(t('notAvailable'))
   const [gitCacheCleanupDays, setGitCacheCleanupDays] = useState<number>(30)
   const [gitCacheTtlSecs, setGitCacheTtlSecs] = useState<number>(60)
+  const [githubToken, setGithubToken] = useState<string>('')
   const handlePickStoragePath = useCallback(async () => {
     try {
       if (!isTauri) {
@@ -465,6 +502,18 @@ function App() {
     },
     [invokeTauri, isTauri],
   )
+  const handleGithubTokenChange = useCallback(
+    async (nextToken: string) => {
+      setGithubToken(nextToken)
+      if (!isTauri) return
+      try {
+        await invokeTauri('set_github_token', { token: nextToken })
+      } catch (err) {
+        setError(err instanceof Error ? err.message : String(err))
+      }
+    },
+    [invokeTauri, isTauri],
+  )
   const handleClearGitCacheNow = useCallback(async () => {
     if (!isTauri) {
       setError(t('errors.notTauri'))
@@ -509,9 +558,84 @@ function App() {
     setShowSettingsModal(true)
   }, [])
 
+  const loadFeaturedSkills = useCallback(async () => {
+    if (featuredSkills.length > 0) return
+    setFeaturedLoading(true)
+    try {
+      const result = await invokeTauri<FeaturedSkillDto[]>('get_featured_skills')
+      setFeaturedSkills(result)
+    } catch {
+      // silent — explore tab will show empty state
+    } finally {
+      setFeaturedLoading(false)
+    }
+  }, [featuredSkills.length, invokeTauri])
+
+  const handleViewChange = useCallback(
+    (view: 'myskills' | 'explore') => {
+      setActiveView(view)
+      if (view === 'explore') {
+        loadFeaturedSkills()
+      }
+      if (view === 'myskills') {
+        setDetailSkill(null)
+      }
+    },
+    [loadFeaturedSkills],
+  )
+
+  const handleOpenDetail = useCallback((skill: ManagedSkill) => {
+    setDetailSkill(skill)
+    setActiveView('detail')
+  }, [])
+
+  const handleBackToList = useCallback(() => {
+    setDetailSkill(null)
+    setActiveView('myskills')
+  }, [])
+
+  const handleExploreFilterChange = useCallback(
+    (value: string) => {
+      setExploreFilter(value)
+      if (searchTimerRef.current) {
+        clearTimeout(searchTimerRef.current)
+        searchTimerRef.current = null
+      }
+      if (value.trim().length < 2) {
+        setSearchResults([])
+        setSearchLoading(false)
+        return
+      }
+      setSearchLoading(true)
+      searchTimerRef.current = setTimeout(async () => {
+        try {
+          const results = await invokeTauri<OnlineSkillDto[]>(
+            'search_skills_online',
+            { query: value.trim(), limit: 20 },
+          )
+          setSearchResults(results)
+        } catch {
+          toast.error(t('searchError'))
+          setSearchResults([])
+        } finally {
+          setSearchLoading(false)
+        }
+      }, 500)
+    },
+    [invokeTauri, t],
+  )
+
+
   const handleOpenAdd = useCallback(() => {
     setShowAddModal(true)
   }, [])
+
+  const handleCancelLoading = useCallback(() => {
+    void invokeTauri('cancel_current_operation').catch(() => {})
+    setLoading(false)
+    setLoadingStartAt(null)
+    setActionMessage(null)
+  }, [invokeTauri])
 
   const handleCloseAdd = useCallback(() => {
     if (!loading) setShowAddModal(false)
@@ -1025,6 +1149,86 @@ function App() {
               if (collectedErrors.length > 0) showActionErrors(collectedErrors)
             }
           }
+        } else if (autoSelectSkillName) {
+          // Auto-select the matching skill from online search results.
+          // skills.sh name may differ from SKILL.md name (e.g. "json-render-react" vs "react"),
+          // so try exact match first, then containment match.
+          const target = autoSelectSkillName.toLowerCase()
+          const containMatches = candidates.filter((c) =>
+            target.includes(c.name.toLowerCase()),
+          )
+          const match =
+            candidates.find((c) => c.name.toLowerCase() === target) ??
+            (containMatches.length === 1 ? containMatches[0] : undefined)
+          setAutoSelectSkillName(null)
+          if (match) {
+            if (isSkillNameTaken(match.name)) {
+              setError(t('errors.skillAlreadyExists', { name: match.name }))
+              return
+            }
+            const created = await invokeTauri<InstallResultDto>(
+              'install_git_selection',
+              {
+                repoUrl: url,
+                subpath: match.subpath,
+                name: gitName.trim() || undefined,
+              },
+            )
+            {
+              const selectedInstalledIds = tools
+                .filter((tool) => syncTargets[tool.id] && isInstalled(tool.id))
+                .map((t) => t.id)
+              const targets = uniqueToolIdsBySkillsDir(selectedInstalledIds)
+                .map((id) => tools.find((t) => t.id === id))
+                .filter(Boolean) as ToolOption[]
+              if (targets.length === 0) {
+                setError(t('errors.noSyncTargets'))
+              } else {
+                const collectedErrors: { title: string; message: string }[] = []
+                for (let i = 0; i < targets.length; i++) {
+                  const tool = targets[i]
+                  setActionMessage(
+                    t('actions.syncStep', {
+                      index: i + 1,
+                      total: targets.length,
+                      name: created.name,
+                      tool: tool.label,
+                    }),
+                  )
+                  try {
+                    await invokeTauri('sync_skill_to_tool', {
+                      sourcePath: created.central_path,
+                      skillId: created.skill_id,
+                      tool: tool.id,
+                      name: created.name,
+                    })
+                  } catch (err) {
+                    const raw = err instanceof Error ? err.message : String(err)
+                    collectedErrors.push({
+                      title: t('errors.syncFailedTitle', {
+                        name: created.name,
+                        tool: tool.label,
+                      }),
+                      message: raw,
+                    })
+                  }
+                }
+                if (collectedErrors.length > 0) showActionErrors(collectedErrors)
+              }
+            }
+          } else {
+            // No match found, fall back to picker
+            setGitCandidatesRepoUrl(url)
+            setGitCandidates(candidates)
+            setGitCandidateSelected(
+              Object.fromEntries(candidates.map((c) => [c.subpath, true])),
+            )
+            setShowGitPickModal(true)
+            setActionMessage(null)
+            setLoading(false)
+            setLoadingStartAt(null)
+            return
+          }
         } else {
           setGitCandidatesRepoUrl(url)
           setGitCandidates(candidates)
@@ -1052,6 +1256,34 @@ function App() {
       setLoadingStartAt(null)
     }
   }
+
+  const [exploreInstallTrigger, setExploreInstallTrigger] = useState(0)
+  const exploreInstallUrlRef = useRef<string | null>(null)
+
+  const handleExploreInstall = useCallback(
+    (sourceUrl: string, skillName?: string) => {
+      setGitUrl(sourceUrl)
+      if (skillName) setAutoSelectSkillName(skillName)
+      if (toolStatus) {
+        const targets: Record<string, boolean> = {}
+        for (const id of toolStatus.installed) {
+          targets[id] = true
+        }
+        setSyncTargets(targets)
+      }
+      exploreInstallUrlRef.current = sourceUrl
+      setExploreInstallTrigger((n) => n + 1)
+    },
+    [toolStatus],
+  )
+
+  useEffect(() => {
+    if (exploreInstallTrigger > 0 && exploreInstallUrlRef.current && !loading) {
+      exploreInstallUrlRef.current = null
+      void handleCreateGit()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [exploreInstallTrigger])
 
   const handleInstallSelectedLocalCandidates = async () => {
     const selected = localCandidates.filter(
@@ -1352,7 +1584,7 @@ function App() {
             })
           } catch (err) {
             const raw = err instanceof Error ? err.message : String(err)
-            if (raw.startsWith('TOOL_NOT_INSTALLED|')) continue
+            if (raw.startsWith('TOOL_NOT_INSTALLED|') || raw.startsWith('TOOL_NOT_WRITABLE|')) continue
             collectedErrors.push({
               title: t('errors.syncFailedTitle', {
                 name: skill.name,
@@ -1442,8 +1674,10 @@ function App() {
           const targetPath = raw.split('|')[1] ?? ''
           setError(t('errors.targetExistsDetail', { path: targetPath }))
         } else if (raw.startsWith('TOOL_NOT_INSTALLED|')) {
-          // Tool disappeared between detection and click; silently refresh.
           setError(t('errors.toolNotInstalled'))
+        } else if (raw.startsWith('TOOL_NOT_WRITABLE|')) {
+          const parts = raw.split('|')
+          setError(t('errors.toolNotWritable', { tool: parts[1] ?? '', path: parts[2] ?? '' }))
         } else {
           setError(raw)
         }
@@ -1533,44 +1767,71 @@ function App() {
         loading={loading}
         actionMessage={actionMessage}
         loadingStartAt={loadingStartAt}
+        onCancel={handleCancelLoading}
         t={t}
       />
 
       <Header
         language={language}
         loading={loading}
+        activeView={activeView}
         onToggleLanguage={toggleLanguage}
         onOpenSettings={handleOpenSettings}
-        onOpenAdd={handleOpenAdd}
+        onViewChange={handleViewChange}
         t={t}
       />
 
       <main className="skills-main">
-        <div className="dashboard-stack">
-          <FilterBar
-            sortBy={sortBy}
-            searchQuery={searchQuery}
-            loading={loading}
-            onSortChange={handleSortChange}
-            onSearchChange={handleSearchChange}
-            onRefresh={handleRefresh}
-            t={t}
-          />
-          <SkillsList
-            plan={plan}
-            visibleSkills={visibleSkills}
-            installedTools={installedTools}
-            loading={loading}
-            getGithubInfo={getGithubInfo}
-            getSkillSourceLabel={getSkillSourceLabel}
+        {activeView === 'detail' && detailSkill ? (
+          <SkillDetailView
+            skill={detailSkill}
+            onBack={handleBackToList}
+            invokeTauri={invokeTauri}
             formatRelative={formatRelative}
-            onReviewImport={handleReviewImport}
-            onUpdateSkill={handleUpdateSkill}
-            onDeleteSkill={handleDeletePrompt}
-            onToggleTool={handleToggleToolForSkill}
             t={t}
           />
+        ) : activeView === 'myskills' ? (
+          <div className="dashboard-stack">
+            <FilterBar
+              sortBy={sortBy}
+              searchQuery={searchQuery}
+              loading={loading}
+              onSortChange={handleSortChange}
+              onSearchChange={handleSearchChange}
+              onRefresh={handleRefresh}
+              t={t}
+            />
+            <SkillsList
+              plan={plan}
+              visibleSkills={visibleSkills}
+              installedTools={installedTools}
+              loading={loading}
+              getGithubInfo={getGithubInfo}
+              getSkillSourceLabel={getSkillSourceLabel}
+              formatRelative={formatRelative}
+              onReviewImport={handleReviewImport}
+              onUpdateSkill={handleUpdateSkill}
+              onDeleteSkill={handleDeletePrompt}
+              onToggleTool={handleToggleToolForSkill}
+              onOpenDetail={handleOpenDetail}
+              t={t}
+            />
           </div>
+        ) : (
+          <ExplorePage
+            featuredSkills={featuredSkills}
+            featuredLoading={featuredLoading}
+            exploreFilter={exploreFilter}
+            searchResults={searchResults}
+            searchLoading={searchLoading}
+            managedSkills={managedSkills}
+            loading={loading}
+            onExploreFilterChange={handleExploreFilterChange}
+            onInstallSkill={handleExploreInstall}
+            onOpenManualAdd={handleOpenAdd}
+            t={t}
+          />
+        )}
       </main>
 
       <AddSkillModal
@@ -1637,6 +1898,8 @@ function App() {
         onGitCacheCleanupDaysChange={handleGitCacheCleanupDaysChange}
         onGitCacheTtlSecsChange={handleGitCacheTtlSecsChange}
         onClearGitCacheNow={handleClearGitCacheNow}
+        githubToken={githubToken}
+        onGithubTokenChange={handleGithubTokenChange}
         onRequestClose={handleCloseSettings}
         t={t}
       />

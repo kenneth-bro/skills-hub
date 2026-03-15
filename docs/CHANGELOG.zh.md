@@ -4,6 +4,30 @@
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-03-15
+
+### 新增
+- **Explore 页面**：探索功能从弹窗提升为独立页面，顶部导航新增 My Skills / Explore 两个页面级 Tab 切换。
+- **精选技能推荐**：Explore 页展示由 ClawHub API 预生成的热门技能列表（GitHub Actions 每日更新），支持前端筛选和一键安装。
+- **在线技能搜索**：输入 ≥ 2 字符后通过 skills.sh API 实时搜索，500ms 防抖，搜索结果与精选列表自动去重、分区展示。
+- **技能详情页**：点击技能名称进入详情视图，支持文件树浏览、Markdown 渲染（GFM + frontmatter 剥离）和代码语法高亮（40+ 语言，亮/暗主题自适应）。
+- **技能描述字段**：安装时从 SKILL.md frontmatter 提取 description 存入数据库，My Skills 卡片展示描述文本。
+- **GitHub Token 配置**：设置页新增可选的 GitHub Token 输入，认证后 API 限额从 60 提升至 5000 次/小时。
+- **MoltBot 工具适配**：OpenClaw 更名拆分后新增独立的 MoltBot 工具支持。
+
+### 修复
+- Git 安装时 skill 名称为 "skills" 导致同步路径重复（[#28](https://github.com/qufei1993/skills-hub/issues/28)）。
+- GitHub API 限流错误未提示重置时间，现在显示具体重置时间。
+- Windows 同步时拒绝访问 OS error 5（[#20](https://github.com/qufei1993/skills-hub/issues/20)）。
+- Git 仓库目录结构无法被正确识别为 skill（[#18](https://github.com/qufei1993/skills-hub/issues/18)、[#8](https://github.com/qufei1993/skills-hub/issues/8)）。
+- 不支持 `.claude/skills/` 目录格式的仓库（[#27](https://github.com/qufei1993/skills-hub/issues/27)）。
+- OpenClaw 路径更新（`.moltbot/skills` → `.openclaw/skills`）（[#29](https://github.com/qufei1993/skills-hub/issues/29)）。
+
+### 变更
+- My Skills 列表优化：工具徽章只显示已同步的工具，超过 5 个折叠为 `+N more`。
+- 添加技能弹窗（Manual Add）精简为仅保留 Local Directory / Git Repository 两个 Tab。
+- 多技能仓库在线安装时支持自动匹配（精确 → 唯一包含 → 回退手动选择）。
+
 ## [0.2.0] - 2026-02-01
 ### 新增
 - **Windows 平台支持**：支持 Windows 构建与发布（感谢 @jrtxio [PR#6](https://github.com/qufei1993/skills-hub/pull/6)）。

@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import { Box, Copy, Folder, Github, RefreshCw, Trash2 } from 'lucide-react'
 import { toast } from 'sonner'
 import type { TFunction } from 'i18next'
@@ -19,8 +19,11 @@ type SkillCardProps = {
   onUpdate: (skill: ManagedSkill) => void
   onDelete: (skillId: string) => void
   onToggleTool: (skill: ManagedSkill, toolId: string) => void
+  onOpenDetail: (skill: ManagedSkill) => void
   t: TFunction
 }
+
+const MAX_VISIBLE_BADGES = 5
 
 const SkillCard = ({
   skill,
@@ -32,6 +35,7 @@ const SkillCard = ({
   onUpdate,
   onDelete,
   onToggleTool,
+  onOpenDetail,
   t,
 }: SkillCardProps) => {
   const typeKey = skill.source_type.toLowerCase()
@@ -55,13 +59,39 @@ const SkillCard = ({
     }
   }
 
+  // Split tools into synced and remaining for badge display
+  const syncedTools: { tool: ToolOption; target: (typeof skill.targets)[0] }[] = []
+  const unsyncedTools: ToolOption[] = []
+  for (const tool of installedTools) {
+    const target = skill.targets.find((tgt) => tgt.tool === tool.id)
+    if (target) {
+      syncedTools.push({ tool, target })
+    } else {
+      unsyncedTools.push(tool)
+    }
+  }
+
+  const [expanded, setExpanded] = useState(false)
+  const needsCollapse = syncedTools.length > MAX_VISIBLE_BADGES
+  const visibleSynced = expanded ? syncedTools : syncedTools.slice(0, MAX_VISIBLE_BADGES)
+  const remainingCount = syncedTools.length - MAX_VISIBLE_BADGES
+
   return (
     <div className="skill-card">
       <div className="skill-icon">{iconNode}</div>
       <div className="skill-main">
         <div className="skill-header-row">
-          <div className="skill-name">{skill.name}</div>
+          <button
+            type="button"
+            className="skill-name clickable"
+            onClick={() => onOpenDetail(skill)}
+          >
+            {skill.name}
+          </button>
         </div>
+        {skill.description ? (
+          <div className="skill-desc">{skill.description}</div>
+        ) : null}
         <div className="skill-meta-row">
           {github ? (
             <div className="skill-source">
@@ -101,28 +131,40 @@ const SkillCard = ({
             {formatRelative(skill.updated_at)}
           </div>
         </div>
-        <div className="tool-matrix">
-          {installedTools.map((tool) => {
-            const target = skill.targets.find((t) => t.tool === tool.id)
-            const synced = Boolean(target)
-            const state = synced ? 'active' : 'inactive'
-            return (
+        <div className={`tool-matrix${!expanded && needsCollapse ? ' collapsed' : ''}`}>
+          {visibleSynced.map(({ tool, target }) => (
+            <button
+              key={`${skill.id}-${tool.id}`}
+              type="button"
+              className="tool-pill active"
+              title={`${tool.label} (${target.mode ?? t('unknown')})`}
+              onClick={() => void onToggleTool(skill, tool.id)}
+            >
+              <span className="status-badge" />
+              {tool.label}
+            </button>
+          ))}
+          {needsCollapse && !expanded ? (
+            <button
+              type="button"
+              className="tool-pill more-badge"
+              onClick={() => setExpanded(true)}
+            >
+              {t('moreTools', { count: remainingCount })}
+            </button>
+          ) : null}
+          {expanded &&
+            unsyncedTools.map((tool) => (
               <button
                 key={`${skill.id}-${tool.id}`}
                 type="button"
-                className={`tool-pill ${state}`}
-                title={
-                  synced
-                    ? `${tool.label} (${target?.mode ?? t('unknown')})`
-                    : tool.label
-                }
+                className="tool-pill inactive"
+                title={tool.label}
                 onClick={() => void onToggleTool(skill, tool.id)}
               >
-                {synced ? <span className="status-badge" /> : null}
                 {tool.label}
               </button>
-            )
-          })}
+            ))}
         </div>
       </div>
       <div className="skill-actions-col">

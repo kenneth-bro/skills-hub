@@ -1,32 +1,52 @@
 import { memo } from 'react'
-import { Plus, Settings } from 'lucide-react'
+import { Layers, Search, Settings } from 'lucide-react'
 import type { TFunction } from 'i18next'
 
 type HeaderProps = {
   language: string
   loading: boolean
+  activeView: 'myskills' | 'explore' | 'detail'
   onToggleLanguage: () => void
   onOpenSettings: () => void
-  onOpenAdd: () => void
+  onViewChange: (view: 'myskills' | 'explore') => void
   t: TFunction
 }
 
 const Header = ({
   language,
-  loading,
+  activeView,
   onToggleLanguage,
   onOpenSettings,
-  onOpenAdd,
+  onViewChange,
   t,
 }: HeaderProps) => {
   return (
     <header className="skills-header">
-      <div className="brand-area">
-        <img className="logo-icon" src="/logo.png" alt="" />
-        <div className="brand-text-wrap">
-          <div className="brand-text">{t('appName')}</div>
-          <div className="brand-subtitle">{t('subtitle')}</div>
+      <div className="header-left">
+        <div className="brand-area">
+          <img className="logo-icon" src="/logo.png" alt="" />
+          <div className="brand-text-wrap">
+            <div className="brand-text">{t('appName')}</div>
+          </div>
         </div>
+        <nav className="nav-tabs">
+          <button
+            className={`nav-tab${activeView === 'myskills' || activeView === 'detail' ? ' active' : ''}`}
+            type="button"
+            onClick={() => onViewChange('myskills')}
+          >
+            <Layers size={16} />
+            {t('navMySkills')}
+          </button>
+          <button
+            className={`nav-tab${activeView === 'explore' ? ' active' : ''}`}
+            type="button"
+            onClick={() => onViewChange('explore')}
+          >
+            <Search size={16} />
+            {t('navExplore')}
+          </button>
+        </nav>
       </div>
       <div className="header-actions">
         <button className="lang-btn" type="button" onClick={onToggleLanguage}>
@@ -34,15 +54,6 @@ const Header = ({
         </button>
         <button className="icon-btn" type="button" onClick={onOpenSettings}>
           <Settings size={18} />
-        </button>
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={onOpenAdd}
-          disabled={loading}
-        >
-          <Plus size={16} />
-          {t('newSkill')}
         </button>
       </div>
     </header>

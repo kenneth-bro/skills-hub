@@ -4,6 +4,30 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-03-15
+
+### Added
+- **Explore page**: Explore promoted from a modal tab to an independent page with My Skills / Explore top-level navigation.
+- **Featured skills**: Explore page displays curated skills from ClawHub API (updated daily via GitHub Actions) with frontend filtering and one-click install.
+- **Online skill search**: Real-time search via skills.sh API (triggered at 2+ characters, 500ms debounce), results deduplicated against the featured list and shown in separate sections.
+- **Skill detail view**: Click a skill name to browse its files with a file tree, Markdown rendering (GFM + frontmatter stripping), and syntax highlighting (40+ languages, light/dark theme adaptive).
+- **Skill description field**: Description extracted from SKILL.md frontmatter at install time, stored in database, and displayed on My Skills cards.
+- **GitHub Token setting**: Optional GitHub Token input in settings to increase API rate limit from 60 to 5,000 requests/hour.
+- **MoltBot tool adapter**: Added standalone MoltBot tool support after OpenClaw rename/split.
+
+### Fixed
+- Git install deriving skill name as "skills" when URL points to a `skills/` subdirectory, causing duplicated sync paths ([#28](https://github.com/qufei1993/skills-hub/issues/28)).
+- GitHub API rate-limit errors now display the exact reset time instead of a generic message.
+- Windows "Access Denied" OS error 5 when syncing to tools ([#20](https://github.com/qufei1993/skills-hub/issues/20)).
+- Git repo directory structures not correctly recognized as skills ([#18](https://github.com/qufei1993/skills-hub/issues/18), [#8](https://github.com/qufei1993/skills-hub/issues/8)).
+- Repos using `.claude/skills/` directory format not detected ([#27](https://github.com/qufei1993/skills-hub/issues/27)).
+- OpenClaw path updated from `.moltbot/skills` to `.openclaw/skills` ([#29](https://github.com/qufei1993/skills-hub/issues/29)).
+
+### Changed
+- My Skills list: tool badges now only show synced tools, collapsing to `+N more` beyond 5.
+- Manual Add modal simplified to Local Directory / Git Repository tabs only (Explore tab removed).
+- Multi-skill repo online install now auto-matches target skill (exact → unique-contains → fallback to manual picker).
+
 ## [0.2.1] - 2026-03-13
 
 ### Fixed
