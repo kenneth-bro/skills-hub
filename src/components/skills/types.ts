@@ -27,6 +27,7 @@ export type ToolOption = {
 export type ManagedSkill = {
   id: string
   name: string
+  description?: string | null
   source_type: string
   source_ref?: string | null
   central_path: string
@@ -83,4 +84,25 @@ export type UpdateResultDto = {
   content_hash?: string | null
   source_revision?: string | null
   updated_targets: string[]
+}
+
+export type FeaturedSkillDto = {
+  slug: string
+  name: string
+  summary: string
+  downloads: number
+  stars: number
+  source_url: string
+}
+
+export type OnlineSkillDto = {
+  name: string
+  installs: number
+  source: string
+  source_url: string
+}
+
+export type SkillFileEntry = {
+  path: string
+  size: number
 }

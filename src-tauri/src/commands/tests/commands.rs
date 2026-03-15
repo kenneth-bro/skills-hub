@@ -80,6 +80,7 @@ fn get_managed_skills_impl_maps_targets() {
     let skill = SkillRecord {
         id: "s1".to_string(),
         name: "S1".to_string(),
+        description: None,
         source_type: "local".to_string(),
         source_ref: Some("/tmp/src".to_string()),
         source_revision: None,

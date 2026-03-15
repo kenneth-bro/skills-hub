@@ -2,13 +2,17 @@ use anyhow::Context;
 use serde::Serialize;
 use tauri::State;
 
+use std::sync::Arc;
+
 use crate::core::cache_cleanup::{
     cleanup_git_cache_dirs, get_git_cache_cleanup_days as get_git_cache_cleanup_days_core,
     get_git_cache_ttl_secs as get_git_cache_ttl_secs_core,
     set_git_cache_cleanup_days as set_git_cache_cleanup_days_core,
     set_git_cache_ttl_secs as set_git_cache_ttl_secs_core,
 };
+use crate::core::cancel_token::CancelToken;
 use crate::core::central_repo::{ensure_central_repo, resolve_central_repo_path};
+use crate::core::featured_skills::{fetch_featured_skills, FeaturedSkill};
 use crate::core::github_search::{search_github_repos, RepoSummary};
 use crate::core::installer::{
     install_git_skill, install_git_skill_from_selection, install_local_skill,
@@ -17,6 +21,9 @@ use crate::core::installer::{
 };
 use crate::core::onboarding::{build_onboarding_plan, OnboardingPlan};
 use crate::core::skill_store::{SkillStore, SkillTargetRecord};
+use crate::core::skills_search::{
+    search_skills_online as search_skills_online_core, OnlineSkillResult,
+};
 use crate::core::sync_engine::{
     copy_dir_recursive, sync_dir_for_tool_with_overwrite, sync_dir_hybrid, SyncMode,
 };
@@ -384,12 +391,15 @@ pub async fn install_local_selection(
 pub async fn install_git(
     app: tauri::AppHandle,
     store: State<'_, SkillStore>,
+    cancel: State<'_, Arc<CancelToken>>,
     repoUrl: String,
     name: Option<String>,
 ) -> Result<InstallResultDto, String> {
     let store = store.inner().clone();
+    cancel.reset();
+    let cancel_token = Arc::clone(cancel.inner());
     tauri::async_runtime::spawn_blocking(move || {
-        let result = install_git_skill(&app, &store, &repoUrl, name)?;
+        let result = install_git_skill(&app, &store, &repoUrl, name, Some(&cancel_token))?;
         Ok::<_, anyhow::Error>(to_install_dto(result))
     })
     .await
@@ -476,6 +486,17 @@ pub async fn sync_skill_to_tool(
             anyhow::bail!("TOOL_NOT_INSTALLED|{}", adapter.id.as_key());
         }
         let tool_root = resolve_default_path(&adapter)?;
+        // Pre-check: ensure the skills directory is writable (fixes #20 — Windows OS error 5).
+        if let Err(err) = std::fs::create_dir_all(&tool_root) {
+            if err.kind() == std::io::ErrorKind::PermissionDenied {
+                anyhow::bail!(
+                    "TOOL_NOT_WRITABLE|{}|{}",
+                    adapter.display_name,
+                    tool_root.to_string_lossy()
+                );
+            }
+            anyhow::bail!("failed to create skills dir {:?}: {}", tool_root, err);
+        }
         let target = tool_root.join(&name);
         let overwrite = overwrite.unwrap_or(false);
         let result =
@@ -484,6 +505,15 @@ pub async fn sync_skill_to_tool(
                     let msg = err.to_string();
                     if msg.contains("target already exists") {
                         anyhow::anyhow!("TARGET_EXISTS|{}", target.to_string_lossy())
+                    } else if msg.contains("os error 5")
+                        || msg.contains("Access is denied")
+                        || msg.contains("Permission denied")
+                    {
+                        anyhow::anyhow!(
+                            "TOOL_NOT_WRITABLE|{}|{}",
+                            adapter.display_name,
+                            tool_root.to_string_lossy()
+                        )
                     } else {
                         anyhow::anyhow!(msg)
                     }
@@ -613,12 +643,53 @@ pub async fn update_managed_skill(
 }
 
 #[tauri::command]
-pub async fn search_github(query: String, limit: Option<u32>) -> Result<Vec<RepoSummary>, String> {
+pub async fn search_github(
+    store: State<'_, SkillStore>,
+    query: String,
+    limit: Option<u32>,
+) -> Result<Vec<RepoSummary>, String> {
+    let store = store.inner().clone();
     let limit = limit.unwrap_or(10) as usize;
-    tauri::async_runtime::spawn_blocking(move || search_github_repos(&query, limit))
-        .await
-        .map_err(|err| err.to_string())?
-        .map_err(format_anyhow_error)
+    tauri::async_runtime::spawn_blocking(move || {
+        let token = store.get_setting("github_token")?.unwrap_or_default();
+        let token_opt = if token.is_empty() {
+            None
+        } else {
+            Some(token.as_str())
+        };
+        search_github_repos(&query, limit, token_opt)
+    })
+    .await
+    .map_err(|err| err.to_string())?
+    .map_err(format_anyhow_error)
+}
+
+#[tauri::command]
+pub async fn get_github_token(store: State<'_, SkillStore>) -> Result<String, String> {
+    let store = store.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || {
+        Ok::<_, anyhow::Error>(store.get_setting("github_token")?.unwrap_or_default())
+    })
+    .await
+    .map_err(|err| err.to_string())?
+    .map_err(format_anyhow_error)
+}
+
+#[tauri::command]
+pub async fn set_github_token(store: State<'_, SkillStore>, token: String) -> Result<(), String> {
+    let store = store.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || {
+        let trimmed = token.trim();
+        if trimmed.is_empty() {
+            store.set_setting("github_token", "")?;
+        } else {
+            store.set_setting("github_token", trimmed)?;
+        }
+        Ok::<_, anyhow::Error>(())
+    })
+    .await
+    .map_err(|err| err.to_string())?
+    .map_err(format_anyhow_error)
 }
 
 #[tauri::command]
@@ -631,7 +702,13 @@ pub async fn import_existing_skill(
 ) -> Result<InstallResultDto, String> {
     let store = store.inner().clone();
     tauri::async_runtime::spawn_blocking(move || {
-        let result = install_local_skill(&app, &store, sourcePath.as_ref(), name)?;
+        let source = std::path::Path::new(&sourcePath);
+        // Validate SKILL.md exists before importing (fixes #8: prevents importing
+        // directories that were "discovered" but lack a valid SKILL.md).
+        if !source.join("SKILL.md").exists() {
+            anyhow::bail!("SKILL_INVALID|missing_skill_md");
+        }
+        let result = install_local_skill(&app, &store, source, name)?;
         Ok::<_, anyhow::Error>(to_install_dto(result))
     })
     .await
@@ -643,6 +720,7 @@ pub async fn import_existing_skill(
 pub struct ManagedSkillDto {
     pub id: String,
     pub name: String,
+    pub description: Option<String>,
     pub source_type: String,
     pub source_ref: Option<String>,
     pub central_path: String,
@@ -773,6 +851,7 @@ fn get_managed_skills_impl(store: &SkillStore) -> Result<Vec<ManagedSkillDto>, S
             ManagedSkillDto {
                 id: skill.id,
                 name: skill.name,
+                description: skill.description,
                 source_type: skill.source_type,
                 source_ref: skill.source_ref,
                 central_path: skill.central_path,
@@ -784,6 +863,121 @@ fn get_managed_skills_impl(store: &SkillStore) -> Result<Vec<ManagedSkillDto>, S
             }
         })
         .collect())
+}
+
+#[derive(Debug, Serialize)]
+pub struct FeaturedSkillDto {
+    pub slug: String,
+    pub name: String,
+    pub summary: String,
+    pub downloads: u64,
+    pub stars: u64,
+    pub source_url: String,
+}
+
+impl From<FeaturedSkill> for FeaturedSkillDto {
+    fn from(s: FeaturedSkill) -> Self {
+        Self {
+            slug: s.slug,
+            name: s.name,
+            summary: s.summary,
+            downloads: s.downloads,
+            stars: s.stars,
+            source_url: s.source_url,
+        }
+    }
+}
+
+#[tauri::command]
+pub async fn get_featured_skills(
+    store: State<'_, SkillStore>,
+) -> Result<Vec<FeaturedSkillDto>, String> {
+    let store = store.inner().clone();
+    tauri::async_runtime::spawn_blocking(move || {
+        let skills = fetch_featured_skills(&store)?;
+        Ok::<_, anyhow::Error>(skills.into_iter().map(FeaturedSkillDto::from).collect())
+    })
+    .await
+    .map_err(|err| err.to_string())?
+    .map_err(format_anyhow_error)
+}
+
+#[derive(Debug, Serialize)]
+pub struct OnlineSkillDto {
+    pub name: String,
+    pub installs: u64,
+    pub source: String,
+    pub source_url: String,
+}
+
+impl From<OnlineSkillResult> for OnlineSkillDto {
+    fn from(r: OnlineSkillResult) -> Self {
+        Self {
+            name: r.name,
+            installs: r.installs,
+            source: r.source,
+            source_url: r.source_url,
+        }
+    }
+}
+
+#[tauri::command]
+pub async fn search_skills_online(
+    query: String,
+    limit: Option<u32>,
+) -> Result<Vec<OnlineSkillDto>, String> {
+    let limit = limit.unwrap_or(20) as usize;
+    tauri::async_runtime::spawn_blocking(move || {
+        let results = search_skills_online_core(&query, limit)?;
+        Ok::<_, anyhow::Error>(results.into_iter().map(OnlineSkillDto::from).collect())
+    })
+    .await
+    .map_err(|err| err.to_string())?
+    .map_err(format_anyhow_error)
+}
+
+#[derive(Debug, Serialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SkillFileEntry {
+    pub path: String,
+    pub size: u64,
+}
+
+#[tauri::command]
+pub async fn list_skill_files(central_path: String) -> Result<Vec<SkillFileEntry>, String> {
+    let path = std::path::PathBuf::from(&central_path);
+    tauri::async_runtime::spawn_blocking(move || {
+        let entries = crate::core::skill_files::list_files(&path)?;
+        Ok::<_, anyhow::Error>(
+            entries
+                .into_iter()
+                .map(|e| SkillFileEntry {
+                    path: e.path,
+                    size: e.size,
+                })
+                .collect(),
+        )
+    })
+    .await
+    .map_err(|err| err.to_string())?
+    .map_err(format_anyhow_error)
+}
+
+#[tauri::command]
+pub async fn read_skill_file(central_path: String, file_path: String) -> Result<String, String> {
+    let base = std::path::PathBuf::from(&central_path);
+    tauri::async_runtime::spawn_blocking(move || {
+        crate::core::skill_files::read_file(&base, &file_path)
+    })
+    .await
+    .map_err(|err| err.to_string())?
+    .map_err(format_anyhow_error)
+}
+
+#[tauri::command]
+pub fn cancel_current_operation(cancel: State<'_, Arc<CancelToken>>) -> Result<(), String> {
+    cancel.cancel();
+    Ok(())
 }
 
 #[cfg(test)]

@@ -1,11 +1,16 @@
 pub mod cache_cleanup;
+pub mod cancel_token;
 pub mod central_repo;
 pub mod content_hash;
+pub mod featured_skills;
 pub mod git_fetcher;
+pub mod github_download;
 pub mod github_search;
 pub mod installer;
 pub mod onboarding;
+pub mod skill_files;
 pub mod skill_store;
+pub mod skills_search;
 pub mod sync_engine;
 pub mod temp_cleanup;
 pub mod tool_adapters;

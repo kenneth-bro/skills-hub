@@ -56,7 +56,7 @@ const AddSkillModal = ({
       className="modal-backdrop"
       onClick={() => (canClose ? onRequestClose() : null)}
     >
-      <div className="modal modal-lg" onClick={(e) => e.stopPropagation()}>
+      <div className="modal" onClick={(e) => e.stopPropagation()}>
         <div className="modal-header">
           <div className="modal-title">{t('addSkillTitle')}</div>
           <button
@@ -84,9 +84,6 @@ const AddSkillModal = ({
               onClick={() => onTabChange('git')}
             >
               {t('gitTab')}
-            </button>
-            <button className="tab-item disabled" type="button" disabled>
-              {t('searchTab')}
             </button>
           </div>
 
