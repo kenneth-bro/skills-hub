@@ -943,7 +943,9 @@ function App() {
       if (candidates.length === 0) {
         throw new Error(t('errors.noSkillsFoundLocal'))
       }
-      if (candidates.length === 1 && candidates[0].valid) {
+      // If it's a skills repo (any candidate has subpath != '.'), always show picker
+      const isSkillsRepo = candidates.some((c) => c.subpath !== '.')
+      if (candidates.length === 1 && candidates[0].valid && !isSkillsRepo) {
         const desiredName = localName.trim() || candidates[0].name
         if (isSkillNameTaken(desiredName)) {
           setError(t('errors.skillAlreadyExists', { name: desiredName }))

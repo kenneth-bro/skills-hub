@@ -931,6 +931,51 @@ pub fn list_local_skills(base_path: &Path) -> Result<Vec<LocalSkillCandidate>> {
         }
     }
 
+    // Also scan root-level subdirectories for SKILL.md (skills repo without a skills/ prefix).
+    // Skip hidden dirs and dirs already covered by SKILL_SCAN_BASES.
+    let scan_base_names: std::collections::HashSet<&str> =
+        SKILL_SCAN_BASES.iter().copied().collect();
+    if let Ok(rd) = std::fs::read_dir(base_path) {
+        for entry in rd.flatten() {
+            let p = entry.path();
+            if !p.is_dir() {
+                continue;
+            }
+            let dir_name = entry.file_name();
+            let dir_name_str = dir_name.to_string_lossy();
+            if dir_name_str.starts_with('.') || scan_base_names.contains(dir_name_str.as_ref()) {
+                continue;
+            }
+            if p.join("SKILL.md").exists() {
+                let rel = p
+                    .strip_prefix(base_path)
+                    .unwrap_or(&p)
+                    .to_string_lossy()
+                    .to_string();
+                match parse_skill_md_with_reason(&p.join("SKILL.md")) {
+                    Ok((name, desc)) => {
+                        out.push(LocalSkillCandidate {
+                            name,
+                            description: desc,
+                            subpath: rel,
+                            valid: true,
+                            reason: None,
+                        });
+                    }
+                    Err(reason) => {
+                        out.push(LocalSkillCandidate {
+                            name: dir_name_str.to_string(),
+                            description: None,
+                            subpath: rel,
+                            valid: false,
+                            reason: Some(reason.to_string()),
+                        });
+                    }
+                }
+            }
+        }
+    }
+
     out.sort_by(|a, b| a.name.cmp(&b.name));
     out.dedup_by(|a, b| a.subpath == b.subpath);
 

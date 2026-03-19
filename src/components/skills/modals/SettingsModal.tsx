@@ -273,7 +273,7 @@ const SettingsModal = ({
 
         </div>
         <div className="modal-footer">
-          <button className="btn btn-primary btn-full" onClick={onRequestClose}>
+          <button className="btn btn-primary" onClick={onRequestClose}>
             {t('done')}
           </button>
         </div>
