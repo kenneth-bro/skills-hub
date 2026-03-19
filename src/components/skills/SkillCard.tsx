@@ -71,10 +71,19 @@ const SkillCard = ({
     }
   }
 
+  const allTools = [...syncedTools.map(({ tool }) => tool), ...unsyncedTools]
+  const totalCount = allTools.length
   const [expanded, setExpanded] = useState(false)
-  const needsCollapse = syncedTools.length > MAX_VISIBLE_BADGES
-  const visibleSynced = expanded ? syncedTools : syncedTools.slice(0, MAX_VISIBLE_BADGES)
-  const remainingCount = syncedTools.length - MAX_VISIBLE_BADGES
+  const needsCollapse = totalCount > MAX_VISIBLE_BADGES
+
+  // Build a flat ordered list: synced first, then unsynced
+  type BadgeItem = { tool: ToolOption; synced: boolean; target?: (typeof skill.targets)[0] }
+  const allBadges: BadgeItem[] = [
+    ...syncedTools.map(({ tool, target }) => ({ tool, synced: true, target })),
+    ...unsyncedTools.map((tool) => ({ tool, synced: false })),
+  ]
+  const visibleBadges = expanded ? allBadges : allBadges.slice(0, MAX_VISIBLE_BADGES)
+  const remainingCount = totalCount - MAX_VISIBLE_BADGES
 
   return (
     <div className="skill-card">
@@ -132,15 +141,19 @@ const SkillCard = ({
           </div>
         </div>
         <div className={`tool-matrix${!expanded && needsCollapse ? ' collapsed' : ''}`}>
-          {visibleSynced.map(({ tool, target }) => (
+          {visibleBadges.map(({ tool, synced, target }) => (
             <button
               key={`${skill.id}-${tool.id}`}
               type="button"
-              className="tool-pill active"
-              title={`${tool.label} (${target.mode ?? t('unknown')})`}
+              className={`tool-pill ${synced ? 'active' : 'inactive'}`}
+              title={
+                synced
+                  ? `${tool.label} (${target?.mode ?? t('unknown')})`
+                  : `${tool.label} — ${t('clickToSync', { defaultValue: '点击同步' })}`
+              }
               onClick={() => void onToggleTool(skill, tool.id)}
             >
-              <span className="status-badge" />
+              {synced && <span className="status-badge" />}
               {tool.label}
             </button>
           ))}
@@ -153,18 +166,6 @@ const SkillCard = ({
               {t('moreTools', { count: remainingCount })}
             </button>
           ) : null}
-          {expanded &&
-            unsyncedTools.map((tool) => (
-              <button
-                key={`${skill.id}-${tool.id}`}
-                type="button"
-                className="tool-pill inactive"
-                title={tool.label}
-                onClick={() => void onToggleTool(skill, tool.id)}
-              >
-                {tool.label}
-              </button>
-            ))}
         </div>
       </div>
       <div className="skill-actions-col">
