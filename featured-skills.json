@@ -1,59 +1,59 @@
 {
-  "updated_at": "2026-05-05T01:23:48.535Z",
+  "updated_at": "2026-05-06T01:21:23.402Z",
   "skills": [
     {
       "slug": "self-improving-agent",
       "name": "Self-Improving Agent",
       "summary": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Clau...",
-      "downloads": 421219,
-      "stars": 3460,
+      "downloads": 422666,
+      "stars": 3477,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/pskoett/self-improving-agent"
     },
     {
       "slug": "skill-vetter",
       "name": "Skill Vetter",
       "summary": "Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.",
-      "downloads": 229783,
-      "stars": 1038,
+      "downloads": 230748,
+      "stars": 1041,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/spclaudehome/skill-vetter"
     },
     {
       "slug": "self-improving",
       "name": "Self-Improving + Proactive Agent",
       "summary": "Self-reflection + Self-criticism + Self-learning + Self-organizing memory. Agent evaluates its own work, catches mistakes, and improves permanently. Use when...",
-      "downloads": 179945,
-      "stars": 1075,
+      "downloads": 180518,
+      "stars": 1073,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/self-improving"
     },
     {
       "slug": "ontology",
       "name": "ontology",
       "summary": "Typed knowledge graph for structured agent memory and composable skills. Use when creating/querying entities (Person, Project, Task, Event, Document), linkin...",
-      "downloads": 175648,
-      "stars": 584,
+      "downloads": 176110,
+      "stars": 585,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/oswalpalash/ontology"
     },
     {
       "slug": "github",
       "name": "Github",
       "summary": "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.",
-      "downloads": 170578,
-      "stars": 566,
+      "downloads": 171228,
+      "stars": 569,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/github"
     },
     {
       "slug": "gog",
       "name": "Gog",
       "summary": "Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.",
-      "downloads": 167672,
-      "stars": 871,
+      "downloads": 168312,
+      "stars": 877,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/gog"
     },
     {
       "slug": "skillscan",
       "name": "SkillScan",
       "summary": "Security gate for skills. Every new skill MUST pass SkillScan before use. Activate on any install, load, add, evaluate, or safety question about a skill. On...",
-      "downloads": 166572,
+      "downloads": 166705,
       "stars": 14,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/tokauthai/skillscan"
     },
@@ -61,7 +61,7 @@
       "slug": "polymarket-trade",
       "name": "Polymarket",
       "summary": "Query Polymarket prediction markets. Check odds, find trending markets, search events, track price movements.",
-      "downloads": 157955,
+      "downloads": 160322,
       "stars": 109,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/joelchance/polymarket-trade"
     },
@@ -69,7 +69,7 @@
       "slug": "proactive-agent",
       "name": "Proactive Agent",
       "summary": "Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve. Now with WAL Protocol, Working Buffer, Autonomous Crons, and battle-tested patterns. Part of the Hal Stack 🦞",
-      "downloads": 153223,
+      "downloads": 153737,
       "stars": 742,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/halthelobster/proactive-agent"
     },
@@ -77,23 +77,23 @@
       "slug": "weather",
       "name": "Weather",
       "summary": "Get current weather and forecasts (no API key required).",
-      "downloads": 144757,
-      "stars": 377,
+      "downloads": 145364,
+      "stars": 380,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/weather"
     },
     {
       "slug": "multi-search-engine",
       "name": "Multi Search Engine",
       "summary": "Multi search engine integration with 16 engines (7 CN + 9 Global). Supports advanced search operators, time filters, site search, privacy engines, and Wolfra...",
-      "downloads": 134563,
-      "stars": 646,
+      "downloads": 135237,
+      "stars": 650,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/gpyangyoujun/multi-search-engine"
     },
     {
       "slug": "admapix",
       "name": "AdMapix",
       "summary": "Ad intelligence & app analytics assistant. Search ad creatives, analyze apps, view rankings, track downloads/revenue, and get market insights. Get your API k...",
-      "downloads": 127192,
+      "downloads": 127303,
       "stars": 274,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/fly0pants/admapix"
     },
@@ -101,31 +101,31 @@
       "slug": "agent-browser-clawdbot",
       "name": "Agent Browser",
       "summary": "Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection",
-      "downloads": 102725,
-      "stars": 368,
+      "downloads": 103186,
+      "stars": 369,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/matrixy/agent-browser-clawdbot"
     },
     {
       "slug": "humanizer",
       "name": "Humanizer",
       "summary": "Remove signs of AI-generated writing from text. Use when editing or reviewing\ntext to make it sound more natural and human-written. Based on Wikipedia's\ncomprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including:\ninflated symbolism, promotional language, superficial -ing analyses, vague\nattributions, em dash overuse, rule of three, AI vocabulary words, negative\nparallelisms, and excessive conjunctive phrases.",
-      "downloads": 101286,
-      "stars": 585,
+      "downloads": 101939,
+      "stars": 587,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/biostartechnology/humanizer"
     },
     {
       "slug": "nano-pdf",
       "name": "Nano Pdf",
       "summary": "Edit PDFs with natural-language instructions using the nano-pdf CLI.",
-      "downloads": 99269,
-      "stars": 240,
+      "downloads": 99748,
+      "stars": 241,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/nano-pdf"
     },
     {
       "slug": "pollyreach",
       "name": "PollyReach",
       "summary": "PollyReach gives every AI agent a phone number and the ability to get things done over the phone — finding contacts, making calls, and completing tasks. Just...",
-      "downloads": 96593,
+      "downloads": 96682,
       "stars": 38,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/pollyreach/pollyreach"
     },
@@ -133,31 +133,31 @@
       "slug": "nano-banana-pro",
       "name": "Nano Banana Pro",
       "summary": "Generate/edit images with Nano Banana Pro (Gemini 3 Pro Image). Use for image create/modify requests incl. edits. Supports text-to-image + image-to-image; 1K/2K/4K; use --input-image.",
-      "downloads": 92991,
-      "stars": 369,
+      "downloads": 93324,
+      "stars": 372,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/nano-banana-pro"
     },
     {
       "slug": "obsidian",
       "name": "Obsidian",
       "summary": "Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli.",
-      "downloads": 89675,
-      "stars": 368,
+      "downloads": 90134,
+      "stars": 369,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/obsidian"
     },
     {
       "slug": "openclaw-tavily-search",
       "name": "Tavily 搜索",
       "summary": "Web search via Tavily API (alternative to Brave). Use when the user asks to search the web / look up sources / find links and Brave web_search is unavailable...",
-      "downloads": 89579,
-      "stars": 240,
+      "downloads": 89876,
+      "stars": 242,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/jacky1n7/openclaw-tavily-search"
     },
     {
       "slug": "baidu-search",
       "name": "Baidu web search",
       "summary": "Search the web using Baidu AI Search Engine (BDSE). Use for live information, documentation, or research topics.",
-      "downloads": 83119,
+      "downloads": 83345,
       "stars": 209,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ide-rea/baidu-search"
     },
@@ -165,15 +165,15 @@
       "slug": "notion",
       "name": "Notion",
       "summary": "Notion API for creating and managing pages, databases, and blocks.",
-      "downloads": 82377,
-      "stars": 242,
+      "downloads": 82707,
+      "stars": 244,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/notion"
     },
     {
       "slug": "auto-updater",
       "name": "Auto-Updater Skill",
       "summary": "Automatically update Clawdbot and all installed skills once daily. Runs via cron, checks for updates, applies them, and messages the user with a summary of what changed.",
-      "downloads": 81135,
+      "downloads": 81567,
       "stars": 391,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/maximeprades/auto-updater"
     },
@@ -181,47 +181,47 @@
       "slug": "sonoscli",
       "name": "Sonoscli",
       "summary": "Control Sonos speakers (discover/status/play/volume/group).",
-      "downloads": 80458,
+      "downloads": 80576,
       "stars": 52,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/sonoscli"
-    },
-    {
-      "slug": "prismfy-search",
-      "name": "Prismfy Web Search",
-      "summary": "Default web search for OpenClaw. Search the web across 10 engines — Google, Reddit, GitHub, arXiv, Hacker News, and more — using Prismfy. Free tier included,...",
-      "downloads": 78323,
-      "stars": 29,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/uroboros1205/prismfy-search"
     },
     {
       "slug": "skill-creator",
       "name": "Skill Creator",
       "summary": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.",
-      "downloads": 78022,
-      "stars": 269,
+      "downloads": 78470,
+      "stars": 271,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/chindden/skill-creator"
+    },
+    {
+      "slug": "prismfy-search",
+      "name": "Prismfy Web Search",
+      "summary": "Default web search for OpenClaw. Search the web across 10 engines — Google, Reddit, GitHub, arXiv, Hacker News, and more — using Prismfy. Free tier included,...",
+      "downloads": 78426,
+      "stars": 30,
+      "source_url": "https://github.com/openclaw/skills/tree/main/skills/uroboros1205/prismfy-search"
     },
     {
       "slug": "openai-whisper",
       "name": "Openai Whisper",
       "summary": "Local speech-to-text with the Whisper CLI (no API key).",
-      "downloads": 75381,
-      "stars": 298,
+      "downloads": 75706,
+      "stars": 300,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/openai-whisper"
     },
     {
       "slug": "api-gateway",
       "name": "API Gateway",
       "summary": "Connect to external services through Maton-managed API routes. Use this skill only after the user names the target app, account, and task. Start with read/li...",
-      "downloads": 74259,
-      "stars": 371,
+      "downloads": 74587,
+      "stars": 373,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/byungkyu/api-gateway"
     },
     {
       "slug": "agent-phone-call",
       "name": "Agent Phone Call",
       "summary": "Agent Phone Call gives every AI agent a phone number and the ability to get things done over the phone — finding contacts, making calls, and completing tasks...",
-      "downloads": 72173,
+      "downloads": 72220,
       "stars": 7,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/mrsz/agent-phone-call"
     },
@@ -229,47 +229,47 @@
       "slug": "automation-workflows",
       "name": "Automation Workflows",
       "summary": "Design and implement automation workflows to save time and scale operations as a solopreneur. Use when identifying repetitive tasks to automate, building workflows across tools, setting up triggers and actions, or optimizing existing automations. Covers automation opportunity identification, workflow design, tool selection (Zapier, Make, n8n), testing, and maintenance. Trigger on \"automate\", \"automation\", \"workflow automation\", \"save time\", \"reduce manual work\", \"automate my business\", \"no-code automation\".",
-      "downloads": 71796,
-      "stars": 276,
+      "downloads": 72132,
+      "stars": 278,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/jk-0001/automation-workflows"
     },
     {
       "slug": "word-docx",
       "name": "Word / DOCX",
       "summary": "Create, inspect, and edit Microsoft Word documents and DOCX files with reliable styles, numbering, tracked changes, tables, sections, and compatibility check...",
-      "downloads": 69461,
-      "stars": 309,
+      "downloads": 69887,
+      "stars": 311,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/word-docx"
     },
     {
       "slug": "excel-xlsx",
       "name": "Excel / XLSX",
       "summary": "Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation...",
-      "downloads": 62914,
-      "stars": 250,
+      "downloads": 63293,
+      "stars": 251,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/excel-xlsx"
     },
     {
       "slug": "mcporter",
       "name": "Mcporter",
       "summary": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
-      "downloads": 60387,
-      "stars": 183,
+      "downloads": 60644,
+      "stars": 184,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/mcporter"
     },
     {
       "slug": "free-ride",
       "name": "Free Ride - Unlimited free AI",
       "summary": "Manages free AI models from OpenRouter for OpenClaw. Automatically ranks models by quality, configures fallbacks for rate-limit handling, and updates opencla...",
-      "downloads": 60284,
-      "stars": 430,
+      "downloads": 60498,
+      "stars": 431,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/shaivpidadi/free-ride"
     },
     {
       "slug": "elite-longterm-memory",
       "name": "Elite Longterm Memory",
       "summary": "Ultimate AI agent memory system for Cursor, Claude, ChatGPT & Copilot. WAL protocol + vector search + git-notes + cloud backup. Never lose context again. Vibe-coding ready.",
-      "downloads": 55803,
+      "downloads": 56025,
       "stars": 201,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/nextfrontierbuilds/elite-longterm-memory"
     },
@@ -277,119 +277,119 @@
       "slug": "brave-search",
       "name": "Brave Search",
       "summary": "Web search and content extraction via Brave Search API. Use for searching documentation, facts, or any web content. Lightweight, no browser required.",
-      "downloads": 53604,
-      "stars": 180,
+      "downloads": 53828,
+      "stars": 181,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/brave-search"
     },
     {
       "slug": "desktop-control",
       "name": "Desktop Control",
       "summary": "Advanced desktop automation with mouse, keyboard, and screen control",
-      "downloads": 51540,
-      "stars": 325,
+      "downloads": 51769,
+      "stars": 326,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/matagul/desktop-control"
     },
     {
       "slug": "stock-analysis",
       "name": "Stock Analysis",
       "summary": "Analyze stocks and cryptocurrencies using Yahoo Finance data. Supports portfolio management, watchlists with alerts, dividend analysis, 8-dimension stock scoring, viral trend detection (Hot Scanner), and rumor/early signal detection. Use for stock analysis, portfolio tracking, earnings reactions, crypto monitoring, trending stocks, or finding rumors before they hit mainstream.",
-      "downloads": 47323,
-      "stars": 223,
+      "downloads": 47534,
+      "stars": 224,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/udiedrichsen/stock-analysis"
     },
     {
       "slug": "youtube-watcher",
       "name": "YouTube Watcher",
       "summary": "Fetch and read transcripts from YouTube videos. Use when you need to summarize a video, answer questions about its content, or extract information from it.",
-      "downloads": 46679,
-      "stars": 286,
+      "downloads": 46892,
+      "stars": 289,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/michaelgathara/youtube-watcher"
     },
     {
       "slug": "video-frames",
       "name": "Video Frames",
       "summary": "Extract frames or short clips from videos using ffmpeg.",
-      "downloads": 46261,
-      "stars": 114,
+      "downloads": 46472,
+      "stars": 116,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/video-frames"
-    },
-    {
-      "slug": "imap-smtp-email",
-      "name": "imap-smtp-email",
-      "summary": "Read and send email via IMAP/SMTP. Check for new/unread messages, fetch content, search mailboxes, mark as read/unread, and send emails with attachments. Sup...",
-      "downloads": 42534,
-      "stars": 98,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/gzlicanyi/imap-smtp-email"
     },
     {
       "slug": "find-skills-skill",
       "name": "Find Skills Skill",
       "summary": "Search and discover OpenClaw skills from various sources. Use when: user wants to find available skills, search for specific functionality, or discover new s...",
-      "downloads": 42446,
-      "stars": 102,
+      "downloads": 42814,
+      "stars": 104,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/fangkelvin/find-skills-skill"
+    },
+    {
+      "slug": "imap-smtp-email",
+      "name": "imap-smtp-email",
+      "summary": "Read and send email via IMAP/SMTP. Check for new/unread messages, fetch content, search mailboxes, mark as read/unread, and send emails with attachments. Sup...",
+      "downloads": 42725,
+      "stars": 98,
+      "source_url": "https://github.com/openclaw/skills/tree/main/skills/gzlicanyi/imap-smtp-email"
     },
     {
       "slug": "slack",
       "name": "Slack",
       "summary": "Use when you need to control Slack from Clawdbot via the slack tool, including reacting to messages or pinning/unpinning items in Slack channels or DMs.",
-      "downloads": 41739,
+      "downloads": 41891,
       "stars": 135,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/slack"
-    },
-    {
-      "slug": "himalaya",
-      "name": "Himalaya",
-      "summary": "CLI to manage emails via IMAP/SMTP. Use `himalaya` to list, read, write, reply, forward, search, and organize emails from the terminal. Supports multiple accounts and message composition with MML (MIME Meta Language).",
-      "downloads": 40824,
-      "stars": 65,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/lamelas/himalaya"
     },
     {
       "slug": "liang-tavily-search",
       "name": "Tavily Search",
       "summary": "Web search using Tavily's LLM-optimized API. Returns relevant results with content snippets, scores, and metadata.",
-      "downloads": 40792,
+      "downloads": 40977,
       "stars": 109,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/matthew77/liang-tavily-search"
+    },
+    {
+      "slug": "himalaya",
+      "name": "Himalaya",
+      "summary": "CLI to manage emails via IMAP/SMTP. Use `himalaya` to list, read, write, reply, forward, search, and organize emails from the terminal. Supports multiple accounts and message composition with MML (MIME Meta Language).",
+      "downloads": 40971,
+      "stars": 65,
+      "source_url": "https://github.com/openclaw/skills/tree/main/skills/lamelas/himalaya"
     },
     {
       "slug": "humanize-ai-text",
       "name": "Humanize AI text",
       "summary": "Humanize AI-generated text to bypass detection. This humanizer rewrites ChatGPT, Claude, and GPT content to sound natural and pass AI detectors like GPTZero,...",
-      "downloads": 40667,
-      "stars": 163,
+      "downloads": 40794,
+      "stars": 164,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/moltbro/humanize-ai-text"
     },
     {
       "slug": "news-summary",
       "name": "News Summary",
       "summary": "This skill should be used when the user asks for news updates, daily briefings, or what's happening in the world. Fetches news from trusted international RSS feeds and can create voice summaries.",
-      "downloads": 39644,
-      "stars": 125,
+      "downloads": 39820,
+      "stars": 126,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/joargp/news-summary"
-    },
-    {
-      "slug": "xiucheng-self-improving-agent",
-      "name": "Self Improving Agent",
-      "summary": "Self-improving agent system that analyzes conversation quality, identifies improvement opportunities, and continuously optimizes response strategies.",
-      "downloads": 39526,
-      "stars": 57,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/xiucheng/xiucheng-self-improving-agent"
     },
     {
       "slug": "powerpoint-pptx",
       "name": "Powerpoint / PPTX",
       "summary": "Create, inspect, and edit Microsoft PowerPoint presentations and PPTX decks with reliable layouts, templates, placeholders, notes, charts, and visual QA. Use...",
-      "downloads": 39498,
-      "stars": 118,
+      "downloads": 39736,
+      "stars": 119,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/powerpoint-pptx"
+    },
+    {
+      "slug": "xiucheng-self-improving-agent",
+      "name": "Self Improving Agent",
+      "summary": "Self-improving agent system that analyzes conversation quality, identifies improvement opportunities, and continuously optimizes response strategies.",
+      "downloads": 39698,
+      "stars": 57,
+      "source_url": "https://github.com/openclaw/skills/tree/main/skills/xiucheng/xiucheng-self-improving-agent"
     },
     {
       "slug": "browser-use",
       "name": "Browser Use",
       "summary": "Automates browser interactions for web testing, form filling, screenshots, and data extraction. Use when the user needs to navigate websites, interact with w...",
-      "downloads": 39427,
+      "downloads": 39629,
       "stars": 94,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/shawnpana/browser-use"
     },
@@ -397,7 +397,7 @@
       "slug": "browser-automation",
       "name": "Browser Automation",
       "summary": "Automate web browser interactions using natural language via CLI commands. Use when the user asks to browse websites, navigate web pages, extract data from websites, take screenshots, fill forms, click buttons, or interact with web applications.",
-      "downloads": 39339,
+      "downloads": 39578,
       "stars": 52,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/peytoncasper/browser-automation"
     },
@@ -405,87 +405,87 @@
       "slug": "memory-setup",
       "name": "Memory Setup",
       "summary": "Enable and configure Moltbot/Clawdbot memory search for persistent context. Use when setting up memory, fixing \"goldfish brain,\" or helping users configure memorySearch in their config. Covers MEMORY.md, daily logs, and vector search setup.",
-      "downloads": 38997,
-      "stars": 119,
+      "downloads": 39191,
+      "stars": 120,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/jrbobbyhansen-pixel/memory-setup"
     },
     {
       "slug": "playwright-mcp",
       "name": "Playwright MCP",
       "summary": "Browser automation via Playwright MCP server. Navigate websites, click elements, fill forms, extract data, take screenshots, and perform full browser automation workflows.",
-      "downloads": 38608,
-      "stars": 140,
+      "downloads": 38790,
+      "stars": 143,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/spiceman161/playwright-mcp"
     },
     {
       "slug": "blogwatcher",
       "name": "Blogwatcher",
       "summary": "Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI.",
-      "downloads": 37755,
-      "stars": 63,
+      "downloads": 37940,
+      "stars": 64,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/blogwatcher"
     },
     {
       "slug": "clawddocs",
       "name": "Clawdbot Documentation Expert",
       "summary": "Clawdbot documentation expert with decision tree navigation, search scripts, doc fetching, version tracking, and config snippets for all Clawdbot features",
-      "downloads": 37695,
-      "stars": 290,
+      "downloads": 37830,
+      "stars": 291,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/nicholasspisak/clawddocs"
     },
     {
       "slug": "markdown-converter",
       "name": "Markdown Converter",
       "summary": "Convert documents and files to Markdown using markitdown. Use when converting PDF, Word (.docx), PowerPoint (.pptx), Excel (.xlsx, .xls), HTML, CSV, JSON, XML, images (with EXIF/OCR), audio (with transcription), ZIP archives, YouTube URLs, or EPubs to Markdown format for LLM processing or text analysis.",
-      "downloads": 37590,
+      "downloads": 37772,
       "stars": 171,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/markdown-converter"
-    },
-    {
-      "slug": "byterover",
-      "name": "ByteRover",
-      "summary": "You MUST use this for gathering contexts before any work. This is a Knowledge management for AI agents. Use `brv` to store and retrieve project patterns, dec...",
-      "downloads": 36578,
-      "stars": 114,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/byteroverinc/byterover"
     },
     {
       "slug": "trello",
       "name": "Trello",
       "summary": "Manage Trello boards, lists, and cards via the Trello REST API.",
-      "downloads": 36546,
-      "stars": 139,
+      "downloads": 36697,
+      "stars": 140,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/trello"
+    },
+    {
+      "slug": "byterover",
+      "name": "ByteRover",
+      "summary": "You MUST use this for gathering contexts before any work. This is a Knowledge management for AI agents. Use `brv` to store and retrieve project patterns, dec...",
+      "downloads": 36673,
+      "stars": 115,
+      "source_url": "https://github.com/openclaw/skills/tree/main/skills/byteroverinc/byterover"
     },
     {
       "slug": "proactive-agent-lite",
       "name": "Proactive Agent Lite",
       "summary": "Transform AI agents from task-followers into proactive partners with memory architecture, reverse prompting, and self-healing patterns. Lightweight version f...",
-      "downloads": 36079,
+      "downloads": 36152,
       "stars": 57,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/bestrocky/proactive-agent-lite"
-    },
-    {
-      "slug": "skill-finder-cn",
-      "name": "Skill Finder Cn",
-      "summary": "Skill 查找器 | Skill Finder. 帮助发现和安装 ClawHub Skills | Discover and install ClawHub Skills. 回答'有什么技能可以X'、'找一个技能' | Answers 'what skill can X', 'find a skill'. 触发...",
-      "downloads": 34776,
-      "stars": 116,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/guohongbin-git/skill-finder-cn"
     },
     {
       "slug": "session-logs",
       "name": "Session-logs",
       "summary": "Search and analyze your own session logs (older/parent conversations) using jq.",
-      "downloads": 34754,
+      "downloads": 34979,
       "stars": 27,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/guogang1024/session-logs"
+    },
+    {
+      "slug": "skill-finder-cn",
+      "name": "Skill Finder Cn",
+      "summary": "Skill 查找器 | Skill Finder. 帮助发现和安装 ClawHub Skills | Discover and install ClawHub Skills. 回答'有什么技能可以X'、'找一个技能' | Answers 'what skill can X', 'find a skill'. 触发...",
+      "downloads": 34903,
+      "stars": 116,
+      "source_url": "https://github.com/openclaw/skills/tree/main/skills/guohongbin-git/skill-finder-cn"
     },
     {
       "slug": "model-usage",
       "name": "Model Usage",
       "summary": "Use CodexBar CLI local cost usage to summarize per-model usage for Codex or Claude, including the current (most recent) model or a full model breakdown. Trigger when asked for model-level usage/cost data from codexbar, or when you need a scriptable per-model summary from codexbar cost JSON.",
-      "downloads": 34280,
+      "downloads": 34426,
       "stars": 108,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/model-usage"
     },
@@ -493,7 +493,7 @@
       "slug": "tavily",
       "name": "Tavily AI Search",
       "summary": "AI-optimized web search using Tavily Search API. Use when you need comprehensive web research, current events lookup, domain-specific search, or AI-generated answer summaries. Tavily is optimized for LLM consumption with clean structured results, answer generation, and raw content extraction. Best for research tasks, news queries, fact-checking, and gathering authoritative sources.",
-      "downloads": 33754,
+      "downloads": 34028,
       "stars": 31,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/bert-builder/tavily"
     },
@@ -501,7 +501,7 @@
       "slug": "xiaohongshu-mcp",
       "name": "Xiaohongshu (小红书) Automation",
       "summary": "Automate Xiaohongshu (RedNote) content operations using a Python client for the xiaohongshu-mcp server. Use for: (1) Publishing image, text, and video content, (2) Searching for notes and trends, (3) Analyzing post details and comments, (4) Managing user profiles and content feeds. Triggers: xiaohongshu automation, rednote content, publish to xiaohongshu, xiaohongshu search, social media management.",
-      "downloads": 33737,
+      "downloads": 33916,
       "stars": 164,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/borye/xiaohongshu-mcp"
     },
@@ -509,15 +509,15 @@
       "slug": "superdesign",
       "name": "SuperDesign",
       "summary": "Expert frontend design guidelines for creating beautiful, modern UIs. Use when building landing pages, dashboards, or any user interface.",
-      "downloads": 33487,
-      "stars": 170,
+      "downloads": 33638,
+      "stars": 171,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/mpociot/superdesign"
     },
     {
       "slug": "clawdhub",
       "name": "Clawdhub",
       "summary": "Use the ClawdHub CLI to search, install, update, and publish agent skills from clawdhub.com. Use when you need to fetch new skills on the fly, sync installed skills to latest or a specific version, or publish new/updated skill folders with the npm-installed clawdhub CLI.",
-      "downloads": 33377,
+      "downloads": 33494,
       "stars": 236,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/clawdhub"
     },
@@ -525,7 +525,7 @@
       "slug": "pdf",
       "name": "Pdf",
       "summary": "Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. When Claude needs to fill in a PDF form or programmatically process, generate, or analyze PDF documents at scale.",
-      "downloads": 32958,
+      "downloads": 33231,
       "stars": 49,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/awspace/pdf"
     },
@@ -533,15 +533,15 @@
       "slug": "discord",
       "name": "Discord",
       "summary": "Use when you need to control Discord from Clawdbot via the discord tool: send messages, react, post or upload stickers, upload emojis, run polls, manage threads/pins/search, fetch permissions or member/role/channel info, or handle moderation actions in Discord DMs or channels.",
-      "downloads": 32795,
-      "stars": 69,
+      "downloads": 32986,
+      "stars": 70,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/discord"
     },
     {
       "slug": "gmail",
       "name": "Gmail",
       "summary": "Gmail API integration with managed OAuth. Read, send, and manage emails, threads, labels, and drafts. Use this skill when users want to interact with Gmail....",
-      "downloads": 32641,
+      "downloads": 32803,
       "stars": 67,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/byungkyu/gmail"
     },
@@ -549,31 +549,31 @@
       "slug": "apple-notes",
       "name": "Apple Notes",
       "summary": "Manage Apple Notes via the `memo` CLI on macOS (create, view, edit, delete, search, move, and export notes). Use when a user asks Clawdbot to add a note, list notes, search notes, or manage note folders.",
-      "downloads": 32459,
-      "stars": 46,
+      "downloads": 32596,
+      "stars": 48,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/apple-notes"
     },
     {
       "slug": "gemini",
       "name": "Gemini",
       "summary": "Gemini CLI for one-shot Q&A, summaries, and generation.",
-      "downloads": 30759,
-      "stars": 48,
+      "downloads": 30892,
+      "stars": 50,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/gemini"
     },
     {
       "slug": "playwright",
       "name": "Playwright (Automation + MCP + Scraper)",
       "summary": "Browser automation via Playwright MCP. Navigate websites, click elements, fill forms, take screenshots, extract data, and debug real browser workflows. Use w...",
-      "downloads": 30585,
-      "stars": 108,
+      "downloads": 30761,
+      "stars": 110,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/playwright"
     },
     {
       "slug": "agentmail",
       "name": "AgentMail",
       "summary": "API-first email platform designed for AI agents. Create and manage dedicated email inboxes, send and receive emails programmatically, and handle email-based workflows with webhooks and real-time events. Use when you need to set up agent email identity, send emails from agents, handle incoming email workflows, or replace traditional email providers like Gmail with agent-friendly infrastructure.",
-      "downloads": 30266,
+      "downloads": 30458,
       "stars": 59,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/adboio/agentmail"
     },
@@ -581,7 +581,7 @@
       "slug": "stock-watcher",
       "name": "Stock Watcher",
       "summary": "Manage and monitor a personal stock watchlist with support for adding, removing, listing stocks, and summarizing their recent performance using data from 10jqka.com.cn. Use when the user wants to track specific stocks, get performance summaries, or manage their watchlist.",
-      "downloads": 29802,
+      "downloads": 30013,
       "stars": 83,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/robin797860/stock-watcher"
     },
@@ -589,23 +589,31 @@
       "slug": "data-analysis",
       "name": "Data Analysis",
       "summary": "Data analysis and visualization. Query databases, generate reports, automate spreadsheets, and turn raw data into clear, actionable insights. Use when (1) yo...",
-      "downloads": 29759,
-      "stars": 102,
+      "downloads": 29982,
+      "stars": 103,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/data-analysis"
     },
     {
       "slug": "qmd",
       "name": "Qmd",
       "summary": "Local search/indexing CLI (BM25 + vectors + rerank) with MCP mode.",
-      "downloads": 29668,
-      "stars": 101,
+      "downloads": 29768,
+      "stars": 102,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/qmd"
+    },
+    {
+      "slug": "web-search",
+      "name": "Web Search",
+      "summary": "This skill should be used when users need to search the web for information, find current content, look up news articles, search for images, or find videos. It uses DuckDuckGo's search API to return results in clean, formatted output (text, markdown, or JSON). Use for research, fact-checking, finding recent information, or gathering web resources.",
+      "downloads": 29740,
+      "stars": 29,
+      "source_url": "https://github.com/openclaw/skills/tree/main/skills/billyutw/web-search"
     },
     {
       "slug": "ppt-generator",
       "name": "description: 将用户讲稿一键生成乔布斯风极简科技感竖屏HTML演示稿。当用户需要生成PPT、演示文稿、Slides、幻灯片，或要求科技风/极简风/乔布斯风格的演示时触发此技能。输出为单个可直接运行的HTML文件。",
       "summary": "将用户讲稿一键生成乔布斯风极简科技感竖屏HTML演示稿。当用户需要生成PPT、演示文稿、Slides、幻灯片，或要求科技风/极简风/乔布斯风格的演示时触发此技能。输出为单个可直接运行的HTML文件。",
-      "downloads": 29663,
+      "downloads": 29732,
       "stars": 79,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/wwlyzzyorg/ppt-generator"
     },
@@ -613,47 +621,39 @@
       "slug": "docker-essentials",
       "name": "Docker Essentials",
       "summary": "Essential Docker commands and workflows for container management, image operations, and debugging.",
-      "downloads": 29476,
-      "stars": 30,
+      "downloads": 29577,
+      "stars": 31,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/arnarsson/docker-essentials"
-    },
-    {
-      "slug": "web-search",
-      "name": "Web Search",
-      "summary": "This skill should be used when users need to search the web for information, find current content, look up news articles, search for images, or find videos. It uses DuckDuckGo's search API to return results in clean, formatted output (text, markdown, or JSON). Use for research, fact-checking, finding recent information, or gathering web resources.",
-      "downloads": 29448,
-      "stars": 29,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/billyutw/web-search"
     },
     {
       "slug": "n8n-workflow-automation",
       "name": "n8n workflow automation",
       "summary": "Designs and outputs n8n workflow JSON with robust triggers, idempotency, error handling, logging, retries, and human-in-the-loop review queues. Use when you need an auditable automation that won’t silently fail.",
-      "downloads": 29111,
-      "stars": 137,
+      "downloads": 29264,
+      "stars": 138,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/kowl64/n8n-workflow-automation"
     },
     {
       "slug": "deep-research-pro",
       "name": "Deep Research Pro",
       "summary": "Multi-source deep research agent. Searches the web, synthesizes findings, and delivers cited reports. No API keys required.",
-      "downloads": 29013,
-      "stars": 76,
+      "downloads": 29170,
+      "stars": 77,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/parags/deep-research-pro"
     },
     {
       "slug": "ui-ux-pro-max",
       "name": "UI/UX Pro Max",
       "summary": "UI/UX design intelligence and implementation guidance for building polished interfaces. Use when the user asks for UI design, UX flows, information architecture, visual style direction, design systems/tokens, component specs, copy/microcopy, accessibility, or to generate/critique/refine frontend UI (HTML/CSS/JS, React, Next.js, Vue, Svelte, Tailwind). Includes workflows for (1) generating new UI layouts and styling, (2) improving existing UI/UX, (3) producing design-system tokens and component guidelines, and (4) turning UX recommendations into concrete code changes.",
-      "downloads": 28741,
-      "stars": 134,
+      "downloads": 28942,
+      "stars": 135,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/xobi667/ui-ux-pro-max"
     },
     {
       "slug": "ai-humanizer",
       "name": "Humanizer",
       "summary": "Humanize AI-generated text by detecting and removing patterns typical of LLM output. Rewrites text to sound natural, specific, and human. Uses 24 pattern detectors, 500+ AI vocabulary terms across 3 tiers, and statistical analysis (burstiness, type-token ratio, readability) for comprehensive detection. Use when asked to humanize text, de-AI writing, make content sound more natural/human, review writing for AI patterns, score text for AI detection, or improve AI-generated drafts. Covers content, language, style, communication, and filler categories.",
-      "downloads": 28605,
+      "downloads": 28717,
       "stars": 64,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/brandonwise/ai-humanizer"
     },
@@ -661,7 +661,7 @@
       "slug": "web-search-exa",
       "name": "Web Search by Exa",
       "summary": "Neural web search, content extraction, company and people research, code search, and deep research via the Exa MCP server. Use when you need to: (1) search t...",
-      "downloads": 27851,
+      "downloads": 27956,
       "stars": 44,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/theishangoswami/web-search-exa"
     },
@@ -669,63 +669,71 @@
       "slug": "ddg-web-search",
       "name": "DuckDuckGo Web Search",
       "summary": "Web search without an API key using DuckDuckGo Lite via web_fetch. Use as a fallback when web_search fails with missing_brave_api_key error, or whenever you...",
-      "downloads": 27778,
-      "stars": 27,
+      "downloads": 27859,
+      "stars": 28,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/jakelin/ddg-web-search"
     },
     {
       "slug": "git-essentials",
       "name": "Git Essentials",
       "summary": "Essential Git commands and workflows for version control, branching, and collaboration.",
-      "downloads": 27151,
-      "stars": 31,
+      "downloads": 27236,
+      "stars": 32,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/arnarsson/git-essentials"
-    },
-    {
-      "slug": "caldav-calendar",
-      "name": "Caldav Calendar",
-      "summary": "Sync and query CalDAV calendars (iCloud, Google, Fastmail, Nextcloud, etc.) using vdirsyncer + khal. Works on Linux.",
-      "downloads": 27022,
-      "stars": 215,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/asleep123/caldav-calendar"
     },
     {
       "slug": "1password",
       "name": "1password",
       "summary": "Set up and use 1Password CLI (op). Use when installing the CLI, enabling desktop app integration, signing in (single or multi-account), or reading/injecting/running secrets via op.",
-      "downloads": 26945,
+      "downloads": 27149,
       "stars": 46,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/1password"
+    },
+    {
+      "slug": "caldav-calendar",
+      "name": "Caldav Calendar",
+      "summary": "Sync and query CalDAV calendars (iCloud, Google, Fastmail, Nextcloud, etc.) using vdirsyncer + khal. Works on Linux.",
+      "downloads": 27104,
+      "stars": 217,
+      "source_url": "https://github.com/openclaw/skills/tree/main/skills/asleep123/caldav-calendar"
     },
     {
       "slug": "ai-ppt-generator",
       "name": "Baidu Wenku AIPPT",
       "summary": "Generate PPT with Baidu Wenku AI. Smart template selection based on content.",
-      "downloads": 26908,
+      "downloads": 27028,
       "stars": 54,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ide-rea/ai-ppt-generator"
-    },
-    {
-      "slug": "playwright-scraper-skill",
-      "name": "Playwright Scraper Skill",
-      "summary": "Playwright-based web scraping OpenClaw Skill with anti-bot protection. Successfully tested on complex sites like Discuss.com.hk.",
-      "downloads": 26082,
-      "stars": 54,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/waisimon/playwright-scraper-skill"
     },
     {
       "slug": "using-superpowers",
       "name": "Using Superpowers",
       "summary": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
-      "downloads": 26052,
+      "downloads": 26268,
       "stars": 54,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/zlc000190/using-superpowers"
+    },
+    {
+      "slug": "playwright-scraper-skill",
+      "name": "Playwright Scraper Skill",
+      "summary": "Playwright-based web scraping OpenClaw Skill with anti-bot protection. Successfully tested on complex sites like Discuss.com.hk.",
+      "downloads": 26168,
+      "stars": 54,
+      "source_url": "https://github.com/openclaw/skills/tree/main/skills/waisimon/playwright-scraper-skill"
+    },
+    {
+      "slug": "openclaw-backup",
+      "name": "OpenClaw Backup",
+      "summary": "Backup and restore OpenClaw data. Use when user asks to create backups, set up automatic backup schedules, restore from backup, or manage backup rotation. Handles ~/.openclaw directory archiving with proper exclusions.",
+      "downloads": 26156,
+      "stars": 79,
+      "source_url": "https://github.com/openclaw/skills/tree/main/skills/alex3alex/openclaw-backup"
     },
     {
       "slug": "peekaboo",
       "name": "Peekaboo",
       "summary": "Capture and automate macOS UI with the Peekaboo CLI.",
-      "downloads": 25993,
+      "downloads": 26133,
       "stars": 74,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/peekaboo"
     },
@@ -733,23 +741,15 @@
       "slug": "stock-market-pro",
       "name": "Stock Market Pro",
       "summary": "Yahoo Finance (yfinance) powered stock analysis skill: quotes, fundamentals, ASCII trends, high-resolution charts (RSI/MACD/BB/VWAP/ATR), plus optional web a...",
-      "downloads": 25979,
+      "downloads": 26084,
       "stars": 150,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/kys42/stock-market-pro"
-    },
-    {
-      "slug": "openclaw-backup",
-      "name": "OpenClaw Backup",
-      "summary": "Backup and restore OpenClaw data. Use when user asks to create backups, set up automatic backup schedules, restore from backup, or manage backup rotation. Handles ~/.openclaw directory archiving with proper exclusions.",
-      "downloads": 25963,
-      "stars": 77,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/alex3alex/openclaw-backup"
     },
     {
       "slug": "apple-reminders",
       "name": "Apple Reminders",
       "summary": "Manage Apple Reminders via the `remindctl` CLI on macOS (list, add, edit, complete, delete). Supports lists, date filters, and JSON/plain output.",
-      "downloads": 25739,
+      "downloads": 25825,
       "stars": 51,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/apple-reminders"
     },
@@ -757,7 +757,7 @@
       "slug": "healthcheck",
       "name": "healthcheck",
       "summary": "Track water and sleep with JSON file storage",
-      "downloads": 25186,
+      "downloads": 25354,
       "stars": 10,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/stellarhold170nt/healthcheck"
     },
@@ -765,23 +765,23 @@
       "slug": "tmux",
       "name": "Tmux",
       "summary": "Remote-control tmux sessions for interactive CLIs by sending keystrokes and scraping pane output.",
-      "downloads": 25027,
-      "stars": 38,
+      "downloads": 25147,
+      "stars": 39,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/tmux"
     },
     {
       "slug": "youtube-api-skill",
       "name": "YouTube",
       "summary": "YouTube Data API integration with managed OAuth. Search videos, manage playlists, access channel data, and interact with comments. Use this skill when users...",
-      "downloads": 24976,
-      "stars": 133,
+      "downloads": 25029,
+      "stars": 134,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/byungkyu/youtube-api-skill"
     },
     {
       "slug": "duckduckgo-search",
       "name": "Performs web searches using DuckDuckGo to retrieve real-time information from the internet. Use when the user needs to search for current events, documentation, tutorials, or any information that requires web search capabilities.",
       "summary": "Performs web searches using DuckDuckGo to retrieve real-time information from the internet. Use when the user needs to search for current events, documentation, tutorials, or any information that requires web search capabilities.",
-      "downloads": 24915,
+      "downloads": 25000,
       "stars": 40,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/10e9928a/duckduckgo-search"
     },
@@ -789,17 +789,17 @@
       "slug": "akshare-stock",
       "name": "A股量化 AkShare",
       "summary": "A股量化数据分析工具，基于AkShare库获取A股行情、财务数据、板块信息等。用于回答关于A股股票查询、行情数据、财务分析、选股等问题。",
-      "downloads": 24389,
+      "downloads": 24578,
       "stars": 76,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/mbpz/akshare-stock"
     },
     {
-      "slug": "sag",
-      "name": "Sag",
-      "summary": "ElevenLabs text-to-speech with mac-style say UX.",
-      "downloads": 24349,
-      "stars": 23,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/sag"
+      "slug": "agent-memory",
+      "name": "Agent Memory",
+      "summary": "Persistent memory for AI agents to store facts, learn from actions, recall information, and track entities across sessions.",
+      "downloads": 24444,
+      "stars": 26,
+      "source_url": "https://github.com/openclaw/skills/tree/main/skills/dennis-da-menace/agent-memory"
     }
   ]
 }
