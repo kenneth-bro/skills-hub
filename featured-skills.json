@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-06-21T02:10:32.746Z",
+  "updated_at": "2026-06-22T02:13:52.118Z",
   "skills": [
     {
       "slug": "self-improving-agent",
       "name": "self-improving agent",
       "summary": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Clau...",
       "downloads": 463283,
-      "stars": 3805,
+      "stars": 3807,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/pskoett/self-improving-agent"
     },
     {
@@ -14,15 +14,15 @@
       "name": "Skill Vetter",
       "summary": "Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.",
       "downloads": 259410,
-      "stars": 1225,
+      "stars": 1226,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/spclaudehome/skill-vetter"
     },
     {
       "slug": "github",
       "name": "Github",
       "summary": "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.",
-      "downloads": 191113,
-      "stars": 638,
+      "downloads": 191115,
+      "stars": 639,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/github"
     },
     {
@@ -30,7 +30,7 @@
       "name": "Self-Improving + Proactive Agent",
       "summary": "Self-reflection + Self-criticism + Self-learning + Self-organizing memory. Agent evaluates its own work, catches mistakes, and improves permanently. Use when...",
       "downloads": 200423,
-      "stars": 1218,
+      "stars": 1219,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/self-improving"
     },
     {
@@ -38,14 +38,14 @@
       "name": "ontology",
       "summary": "Typed knowledge graph for structured agent memory and composable skills. Use when creating/querying entities (Person, Project, Task, Event, Document), linkin...",
       "downloads": 190156,
-      "stars": 641,
+      "stars": 642,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/oswalpalash/ontology"
     },
     {
       "slug": "proactive-agent",
       "name": "Proactive Agent",
       "summary": "Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve. Now with WAL Protocol, Working Buffer, Autonomous Crons, and battle-tested patterns. Part of the Hal Stack 🦞",
-      "downloads": 169774,
+      "downloads": 169775,
       "stars": 805,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/halthelobster/proactive-agent"
     },
@@ -78,7 +78,7 @@
       "name": "Gog",
       "summary": "Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.",
       "downloads": 186758,
-      "stars": 926,
+      "stars": 927,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/gog"
     },
     {
@@ -86,7 +86,7 @@
       "name": "Humanizer",
       "summary": "Remove signs of AI-generated writing from text. Use when editing or reviewing\ntext to make it sound more natural and human-written. Based on Wikipedia's\ncomprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including:\ninflated symbolism, promotional language, superficial -ing analyses, vague\nattributions, em dash overuse, rule of three, AI vocabulary words, negative\nparallelisms, and excessive conjunctive phrases.",
       "downloads": 121859,
-      "stars": 674,
+      "stars": 675,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/biostartechnology/humanizer"
     },
     {
@@ -198,7 +198,7 @@
       "name": "Sonoscli",
       "summary": "Control Sonos speakers (discover/status/play/volume/group).",
       "downloads": 85005,
-      "stars": 55,
+      "stars": 56,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/sonoscli"
     },
     {
@@ -254,7 +254,7 @@
       "name": "Mcporter",
       "summary": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
       "downloads": 67602,
-      "stars": 194,
+      "stars": 195,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/mcporter"
     },
     {
@@ -309,7 +309,7 @@
       "slug": "feishu-evolver-wrapper",
       "name": "Feishu Evolver Wrapper",
       "summary": "(Depreciated: This skill is no longer maintained; its related functions have been absorbed by the Evolver main body.) Feishu-integrated wrapper for the capability-evolver. Manages the evolution loop lifecycle (start/stop/ensure), sends rich Feishu card reports, and provides...",
-      "downloads": 66877,
+      "downloads": 66878,
       "stars": 10,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/autogame-17/feishu-evolver-wrapper"
     },
@@ -333,7 +333,7 @@
       "slug": "video-frames",
       "name": "Video Frames",
       "summary": "Extract frames or short clips from videos using ffmpeg.",
-      "downloads": 52506,
+      "downloads": 52507,
       "stars": 129,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/video-frames"
     },
@@ -525,7 +525,7 @@
       "slug": "discord",
       "name": "Discord",
       "summary": "Use when you need to control Discord from Clawdbot via the discord tool: send messages, react, post or upload stickers, upload emojis, run polls, manage threads/pins/search, fetch permissions or member/role/channel info, or handle moderation actions in Discord DMs or channels.",
-      "downloads": 37989,
+      "downloads": 37990,
       "stars": 78,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/discord"
     },
@@ -541,7 +541,7 @@
       "slug": "skill-finder-cn",
       "name": "Skill Finder Cn",
       "summary": "Skill 查找器 | Skill Finder. 帮助发现和安装 ClawHub Skills | Discover and install ClawHub Skills. 回答'有什么技能可以X'、'找一个技能' | Answers 'what skill can X', 'find a skill'. 触发...",
-      "downloads": 37918,
+      "downloads": 37920,
       "stars": 129,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/guohongbin-git/skill-finder-cn"
     },
@@ -653,7 +653,7 @@
       "slug": "openai-whisper-api",
       "name": "Openai Whisper Api",
       "summary": "Transcribe audio via OpenAI Audio Transcriptions API (Whisper).",
-      "downloads": 26005,
+      "downloads": 26006,
       "stars": 52,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/openai-whisper-api"
     },
@@ -709,7 +709,7 @@
       "slug": "gmail",
       "name": "Gmail",
       "summary": "Gmail API integration with managed OAuth. Read, send, and manage emails, threads, labels, and drafts. Use this skill when users want to interact with Gmail....",
-      "downloads": 37680,
+      "downloads": 37682,
       "stars": 72,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/byungkyu/gmail"
     },
@@ -742,7 +742,7 @@
       "name": "n8n workflow automation",
       "summary": "Designs and outputs n8n workflow JSON with robust triggers, idempotency, error handling, logging, retries, and human-in-the-loop review queues. Use when you need an auditable automation that won’t silently fail.",
       "downloads": 33575,
-      "stars": 156,
+      "stars": 157,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/kowl64/n8n-workflow-automation"
     },
     {
@@ -757,7 +757,7 @@
       "slug": "deep-research-pro",
       "name": "Deep Research Pro",
       "summary": "Multi-source deep research agent. Searches the web, synthesizes findings, and delivers cited reports. No API keys required.",
-      "downloads": 33892,
+      "downloads": 33893,
       "stars": 85,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/parags/deep-research-pro"
     },
