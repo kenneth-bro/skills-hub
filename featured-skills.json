@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-06-23T01:52:54.801Z",
+  "updated_at": "2026-06-24T01:51:35.775Z",
   "skills": [
     {
       "slug": "self-improving-agent",
       "name": "self-improving agent",
       "summary": "Captures learnings, errors, and corrections to enable continuous improvement. Use when: (1) A command or operation fails unexpectedly, (2) User corrects Clau...",
       "downloads": 463952,
-      "stars": 3810,
+      "stars": 3821,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/pskoett/self-improving-agent"
     },
     {
@@ -14,7 +14,7 @@
       "name": "Skill Vetter",
       "summary": "Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.",
       "downloads": 259891,
-      "stars": 1228,
+      "stars": 1232,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/spclaudehome/skill-vetter"
     },
     {
@@ -22,7 +22,7 @@
       "name": "Self-Improving + Proactive Agent",
       "summary": "Self-reflection + Self-criticism + Self-learning + Self-organizing memory. Agent evaluates its own work, catches mistakes, and improves permanently. Use when...",
       "downloads": 200743,
-      "stars": 1221,
+      "stars": 1225,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/self-improving"
     },
     {
@@ -30,7 +30,7 @@
       "name": "Github",
       "summary": "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.",
       "downloads": 191405,
-      "stars": 639,
+      "stars": 641,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/github"
     },
     {
@@ -46,7 +46,7 @@
       "name": "Gog",
       "summary": "Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.",
       "downloads": 186987,
-      "stars": 929,
+      "stars": 930,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/gog"
     },
     {
@@ -70,7 +70,7 @@
       "name": "Weather",
       "summary": "Get current weather and forecasts (no API key required).",
       "downloads": 161764,
-      "stars": 418,
+      "stars": 419,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/weather"
     },
     {
@@ -102,7 +102,7 @@
       "name": "Humanizer",
       "summary": "Remove signs of AI-generated writing from text. Use when editing or reviewing\ntext to make it sound more natural and human-written. Based on Wikipedia's\ncomprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including:\ninflated symbolism, promotional language, superficial -ing analyses, vague\nattributions, em dash overuse, rule of three, AI vocabulary words, negative\nparallelisms, and excessive conjunctive phrases.",
       "downloads": 122138,
-      "stars": 677,
+      "stars": 678,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/biostartechnology/humanizer"
     },
     {
@@ -142,7 +142,7 @@
       "name": "Tavily 搜索",
       "summary": "Web search via Tavily API (alternative to Brave). Use when the user asks to search the web / look up sources / find links and Brave web_search is unavailable...",
       "downloads": 98748,
-      "stars": 263,
+      "stars": 264,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/jacky1n7/openclaw-tavily-search"
     },
     {
@@ -214,7 +214,7 @@
       "name": "Prismfy Web Search | Free Google",
       "summary": "Default web search for OpenClaw. Search the web across 10 engines — Google, Reddit, GitHub, arXiv, Hacker News, and more — using Prismfy. Free tier included,...",
       "downloads": 81426,
-      "stars": 36,
+      "stars": 37,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/uroboros1205/prismfy-search"
     },
     {
@@ -237,7 +237,7 @@
       "slug": "excel-xlsx",
       "name": "Excel / XLSX",
       "summary": "Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation...",
-      "downloads": 74771,
+      "downloads": 74772,
       "stars": 284,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/excel-xlsx"
     },
@@ -502,7 +502,7 @@
       "name": "SuperDesign",
       "summary": "Expert frontend design guidelines for creating beautiful, modern UIs. Use when building landing pages, dashboards, or any user interface.",
       "downloads": 38704,
-      "stars": 185,
+      "stars": 186,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/mpociot/superdesign"
     },
     {
@@ -582,7 +582,7 @@
       "name": "AgentMail",
       "summary": "API-first email platform designed for AI agents. Create and manage dedicated email inboxes, send and receive emails programmatically, and handle email-based workflows with webhooks and real-time events. Use when you need to set up agent email identity, send emails from agents, handle incoming email workflows, or replace traditional email providers like Gmail with agent-friendly infrastructure.",
       "downloads": 36150,
-      "stars": 64,
+      "stars": 65,
       "source_url": ""
     },
     {
@@ -693,7 +693,7 @@
       "slug": "1password",
       "name": "1password",
       "summary": "Set up and use 1Password CLI (op). Use when installing the CLI, enabling desktop app integration, signing in (single or multi-account), or reading/injecting/running secrets via op.",
-      "downloads": 31599,
+      "downloads": 31600,
       "stars": 52,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/1password"
     },
