@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-06-28T02:00:37.061Z",
+  "updated_at": "2026-06-29T02:01:36.317Z",
   "skills": [
     {
       "slug": "self-improving-agent",
       "name": "self-improving agent",
       "summary": "A skill where the agent logs it's own findings for self-improvement",
       "downloads": 464311,
-      "stars": 3845,
+      "stars": 3849,
       "source_url": ""
     },
     {
@@ -22,7 +22,7 @@
       "name": "Self-Improving + Proactive Agent",
       "summary": "Self-reflection + Self-criticism + Self-learning + Self-organizing memory. Agent evaluates its own work, catches mistakes, and improves permanently. Use when...",
       "downloads": 200939,
-      "stars": 1233,
+      "stars": 1235,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/self-improving"
     },
     {
@@ -30,7 +30,7 @@
       "name": "Github",
       "summary": "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.",
       "downloads": 191614,
-      "stars": 644,
+      "stars": 645,
       "source_url": ""
     },
     {
@@ -62,7 +62,7 @@
       "name": "Proactive Agent",
       "summary": "Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve. Now with WAL Protocol, Working Buffer, Autonomous Crons, and battle-tested patterns. Part of the Hal Stack 🦞",
       "downloads": 170160,
-      "stars": 811,
+      "stars": 814,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/halthelobster/proactive-agent"
     },
     {
@@ -77,7 +77,7 @@
       "slug": "multi-search-engine",
       "name": "Multi Search Engine",
       "summary": "Multi search engine integration with 16 engines (7 CN + 9 Global). Supports advanced search operators, time filters, site search, privacy engines, and Wolfra...",
-      "downloads": 154547,
+      "downloads": 154548,
       "stars": 738,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/gpyangyoujun/multi-search-engine"
     },
@@ -93,8 +93,8 @@
       "slug": "agent-browser-clawdbot",
       "name": "Agent Browser",
       "summary": "Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection",
-      "downloads": 131185,
-      "stars": 431,
+      "downloads": 131186,
+      "stars": 434,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/matrixy/agent-browser-clawdbot"
     },
     {
@@ -102,7 +102,7 @@
       "name": "Humanizer",
       "summary": "Remove signs of AI-generated writing from text. Use when editing or reviewing\ntext to make it sound more natural and human-written. Based on Wikipedia's\ncomprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including:\ninflated symbolism, promotional language, superficial -ing analyses, vague\nattributions, em dash overuse, rule of three, AI vocabulary words, negative\nparallelisms, and excessive conjunctive phrases.",
       "downloads": 122308,
-      "stars": 684,
+      "stars": 687,
       "source_url": ""
     },
     {
@@ -118,7 +118,7 @@
       "name": "Nano Banana Pro",
       "summary": "Generate/edit images with Nano Banana Pro (Gemini 3 Pro Image). Use for image create/modify requests incl. edits. Supports text-to-image + image-to-image; 1K/2K/4K; use --input-image.",
       "downloads": 103992,
-      "stars": 408,
+      "stars": 410,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/nano-banana-pro"
     },
     {
@@ -150,7 +150,7 @@
       "name": "Notion",
       "summary": "Notion API for creating and managing pages, databases, and blocks.",
       "downloads": 93290,
-      "stars": 261,
+      "stars": 262,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/notion"
     },
     {
@@ -158,7 +158,7 @@
       "name": "Skill Creator",
       "summary": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.",
       "downloads": 92668,
-      "stars": 324,
+      "stars": 325,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/chindden/skill-creator"
     },
     {
@@ -174,7 +174,7 @@
       "name": "Openai Whisper",
       "summary": "Local speech-to-text with the Whisper CLI (no API key).",
       "downloads": 85208,
-      "stars": 328,
+      "stars": 329,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/openai-whisper"
     },
     {
@@ -270,7 +270,7 @@
       "name": "Elite Longterm Memory",
       "summary": "Ultimate AI agent memory system for Cursor, Claude, ChatGPT & Copilot. WAL protocol + vector search + git-notes + cloud backup. Never lose context again. Vibe-coding ready.",
       "downloads": 62415,
-      "stars": 224,
+      "stars": 225,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/nextfrontierbuilds/elite-longterm-memory"
     },
     {
@@ -278,7 +278,7 @@
       "name": "Brave Search",
       "summary": "Web search and content extraction via Brave Search API. Use for searching documentation, facts, or any web content. Lightweight, no browser required.",
       "downloads": 59923,
-      "stars": 189,
+      "stars": 190,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/steipete/brave-search"
     },
     {
@@ -293,7 +293,7 @@
       "slug": "stock-analysis",
       "name": "Stock Analysis",
       "summary": "Analyze stocks and cryptocurrencies using Yahoo Finance data. Supports portfolio management, watchlists with alerts, dividend analysis, 8-dimension stock scoring, viral trend detection (Hot Scanner), and rumor/early signal detection. Use for stock analysis, portfolio tracking, earnings reactions, crypto monitoring, trending stocks, or finding rumors before they hit mainstream.",
-      "downloads": 54559,
+      "downloads": 54560,
       "stars": 247,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/udiedrichsen/stock-analysis"
     },
@@ -302,7 +302,7 @@
       "name": "YouTube Watcher",
       "summary": "Fetch and read transcripts from YouTube videos. Use when you need to summarize a video, answer questions about its content, or extract information from it.",
       "downloads": 53214,
-      "stars": 332,
+      "stars": 333,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/michaelgathara/youtube-watcher"
     },
     {
@@ -382,7 +382,7 @@
       "name": "Memory Setup",
       "summary": "Enable and configure Moltbot/Clawdbot memory search for persistent context. Use when setting up memory, fixing \"goldfish brain,\" or helping users configure memorySearch in their config. Covers MEMORY.md, daily logs, and vector search setup.",
       "downloads": 44784,
-      "stars": 128,
+      "stars": 129,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/jrbobbyhansen-pixel/memory-setup"
     },
     {
@@ -566,7 +566,7 @@
       "name": "UI/UX Pro Max",
       "summary": "UI/UX design intelligence and implementation guidance for building polished interfaces. Use when the user asks for UI design, UX flows, information architecture, visual style direction, design systems/tokens, component specs, copy/microcopy, accessibility, or to generate/critique/refine frontend UI (HTML/CSS/JS, React, Next.js, Vue, Svelte, Tailwind). Includes workflows for (1) generating new UI layouts and styling, (2) improving existing UI/UX, (3) producing design-system tokens and component guidelines, and (4) turning UX recommendations into concrete code changes.",
       "downloads": 35101,
-      "stars": 165,
+      "stars": 166,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/xobi667/ui-ux-pro-max"
     },
     {
@@ -638,7 +638,7 @@
       "name": "Docker Essentials",
       "summary": "Essential Docker commands and workflows for container management, image operations, and debugging.",
       "downloads": 32411,
-      "stars": 37,
+      "stars": 38,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/arnarsson/docker-essentials"
     },
     {
@@ -719,7 +719,7 @@
       "summary": "A股量化数据分析工具，基于AkShare库获取A股行情、财务数据、板块信息等。用于回答关于A股股票查询、行情数据、财务分析、选股等问题。",
       "downloads": 30265,
       "stars": 96,
-      "source_url": "https://github.com/openclaw/skills/tree/main/skills/mbpz/akshare-stock"
+      "source_url": ""
     },
     {
       "slug": "healthcheck",
@@ -734,7 +734,7 @@
       "name": "Git Essentials",
       "summary": "Essential Git commands and workflows for version control, branching, and collaboration.",
       "downloads": 29902,
-      "stars": 37,
+      "stars": 38,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/arnarsson/git-essentials"
     },
     {
