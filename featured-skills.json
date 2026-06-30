@@ -1,12 +1,12 @@
 {
-  "updated_at": "2026-06-29T02:01:36.317Z",
+  "updated_at": "2026-06-30T01:55:53.777Z",
   "skills": [
     {
       "slug": "self-improving-agent",
       "name": "self-improving agent",
       "summary": "A skill where the agent logs it's own findings for self-improvement",
       "downloads": 464311,
-      "stars": 3849,
+      "stars": 3854,
       "source_url": ""
     },
     {
@@ -14,15 +14,15 @@
       "name": "Skill Vetter",
       "summary": "Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.",
       "downloads": 260138,
-      "stars": 1242,
+      "stars": 1244,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/spclaudehome/skill-vetter"
     },
     {
       "slug": "self-improving",
       "name": "Self-Improving + Proactive Agent",
       "summary": "Self-reflection + Self-criticism + Self-learning + Self-organizing memory. Agent evaluates its own work, catches mistakes, and improves permanently. Use when...",
-      "downloads": 200939,
-      "stars": 1235,
+      "downloads": 200940,
+      "stars": 1236,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/self-improving"
     },
     {
@@ -78,7 +78,7 @@
       "name": "Multi Search Engine",
       "summary": "Multi search engine integration with 16 engines (7 CN + 9 Global). Supports advanced search operators, time filters, site search, privacy engines, and Wolfra...",
       "downloads": 154548,
-      "stars": 738,
+      "stars": 740,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/gpyangyoujun/multi-search-engine"
     },
     {
@@ -102,7 +102,7 @@
       "name": "Humanizer",
       "summary": "Remove signs of AI-generated writing from text. Use when editing or reviewing\ntext to make it sound more natural and human-written. Based on Wikipedia's\ncomprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including:\ninflated symbolism, promotional language, superficial -ing analyses, vague\nattributions, em dash overuse, rule of three, AI vocabulary words, negative\nparallelisms, and excessive conjunctive phrases.",
       "downloads": 122308,
-      "stars": 687,
+      "stars": 688,
       "source_url": ""
     },
     {
@@ -126,7 +126,7 @@
       "name": "Obsidian",
       "summary": "Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli.",
       "downloads": 103805,
-      "stars": 435,
+      "stars": 436,
       "source_url": ""
     },
     {
@@ -142,7 +142,7 @@
       "name": "Tavily 搜索",
       "summary": "Web search via Tavily API (alternative to Brave). Use when the user asks to search the web / look up sources / find links and Brave web_search is unavailable...",
       "downloads": 98835,
-      "stars": 265,
+      "stars": 266,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/jacky1n7/openclaw-tavily-search"
     },
     {
@@ -158,7 +158,7 @@
       "name": "Skill Creator",
       "summary": "Guide for creating effective skills. This skill should be used when users want to create a new skill (or update an existing skill) that extends Claude's capabilities with specialized knowledge, workflows, or tool integrations.",
       "downloads": 92668,
-      "stars": 325,
+      "stars": 326,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/chindden/skill-creator"
     },
     {
@@ -230,7 +230,7 @@
       "name": "Excel / XLSX",
       "summary": "Create, inspect, and edit Microsoft Excel workbooks and XLSX files with reliable formulas, dates, types, formatting, recalculation, and template preservation...",
       "downloads": 74874,
-      "stars": 285,
+      "stars": 286,
       "source_url": ""
     },
     {
@@ -285,8 +285,8 @@
       "slug": "browser-use",
       "name": "Browser Use",
       "summary": "Automates browser interactions for web testing, form filling, screenshots, and data extraction. Use when the user needs to navigate websites, interact with w...",
-      "downloads": 58271,
-      "stars": 109,
+      "downloads": 58272,
+      "stars": 110,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/shawnpana/browser-use"
     },
     {
@@ -406,7 +406,7 @@
       "name": "Playwright MCP",
       "summary": "Browser automation via Playwright MCP server. Navigate websites, click elements, fill forms, extract data, take screenshots, and perform full browser automation workflows.",
       "downloads": 43314,
-      "stars": 155,
+      "stars": 156,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/spiceman161/playwright-mcp"
     },
     {
@@ -622,7 +622,7 @@
       "name": "description: 将用户讲稿一键生成乔布斯风极简科技感竖屏HTML演示稿。当用户需要生成PPT、演示文稿、Slides、幻灯片，或要求科技风/极简风/乔布斯风格的演示时触发此技能。输出为单个可直接运行的HTML文件。",
       "summary": "将用户讲稿一键生成乔布斯风极简科技感竖屏HTML演示稿。当用户需要生成PPT、演示文稿、Slides、幻灯片，或要求科技风/极简风/乔布斯风格的演示时触发此技能。输出为单个可直接运行的HTML文件。",
       "downloads": 32761,
-      "stars": 83,
+      "stars": 84,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/wwlyzzyorg/ppt-generator"
     },
     {
