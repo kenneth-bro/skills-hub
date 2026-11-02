@@ -1,20 +1,20 @@
 {
-  "updated_at": "2026-10-31T02:52:06.774Z",
+  "updated_at": "2026-11-02T02:51:40.074Z",
   "skills": [
     {
       "slug": "self-improving-agent",
       "name": "self-improving agent",
       "summary": "Captures and maintains learnings, errors, and corrections. Use when a command fails, the user corrects an assumption, a capability is missing, knowledge is outdated, or a better approach is found. Review relevant saved guidance before major tasks, reuse, and promotion; revalidate it according to wha",
-      "downloads": 490038,
-      "stars": 4008,
+      "downloads": 490041,
+      "stars": 4010,
       "source_url": ""
     },
     {
       "slug": "skill-vetter",
       "name": "Skill Vetter",
       "summary": "Security-first skill vetting for AI agents. Use before installing any skill from ClawdHub, GitHub, or other sources. Checks for red flags, permission scope, and suspicious patterns.",
-      "downloads": 280680,
-      "stars": 1311,
+      "downloads": 280681,
+      "stars": 1312,
       "source_url": ""
     },
     {
@@ -29,15 +29,15 @@
       "slug": "github",
       "name": "Github",
       "summary": "Interact with GitHub using the `gh` CLI. Use `gh issue`, `gh pr`, `gh run`, and `gh api` for issues, PRs, CI runs, and advanced queries.",
-      "downloads": 203528,
-      "stars": 672,
+      "downloads": 203534,
+      "stars": 673,
       "source_url": ""
     },
     {
       "slug": "ontology",
       "name": "ontology",
       "summary": "Typed knowledge graph for structured agent memory and composable skills. Use when creating/querying entities (Person, Project, Task, Event, Document), linkin...",
-      "downloads": 201081,
+      "downloads": 201082,
       "stars": 660,
       "source_url": ""
     },
@@ -45,8 +45,8 @@
       "slug": "gog",
       "name": "Gog",
       "summary": "Google Workspace CLI for Gmail, Calendar, Drive, Contacts, Sheets, and Docs.",
-      "downloads": 198531,
-      "stars": 956,
+      "downloads": 198536,
+      "stars": 957,
       "source_url": ""
     },
     {
@@ -61,7 +61,7 @@
       "slug": "proactive-agent",
       "name": "Proactive Agent",
       "summary": "Transform AI agents from task-followers into proactive partners that anticipate needs and continuously improve. Now with WAL Protocol, Working Buffer, Autonomous Crons, and battle-tested patterns. Part of the Hal Stack 🦞",
-      "downloads": 178753,
+      "downloads": 178755,
       "stars": 831,
       "source_url": ""
     },
@@ -69,7 +69,7 @@
       "slug": "weather",
       "name": "Weather",
       "summary": "Get current weather and forecasts (no API key required).",
-      "downloads": 172990,
+      "downloads": 172992,
       "stars": 430,
       "source_url": ""
     },
@@ -85,7 +85,7 @@
       "slug": "agent-browser-clawdbot",
       "name": "Agent Browser",
       "summary": "Headless browser automation CLI optimized for AI agents with accessibility tree snapshots and ref-based element selection",
-      "downloads": 158990,
+      "downloads": 158991,
       "stars": 463,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/matrixy/agent-browser-clawdbot"
     },
@@ -101,8 +101,8 @@
       "slug": "humanizer",
       "name": "Humanizer",
       "summary": "Remove signs of AI-generated writing from text. Use when editing or reviewing\ntext to make it sound more natural and human-written. Based on Wikipedia's\ncomprehensive \"Signs of AI writing\" guide. Detects and fixes patterns including:\ninflated symbolism, promotional language, superficial -ing analyses, vague\nattributions, em dash overuse, rule of three, AI vocabulary words, negative\nparallelisms, and excessive conjunctive phrases.",
-      "downloads": 133982,
-      "stars": 721,
+      "downloads": 133983,
+      "stars": 722,
       "source_url": ""
     },
     {
@@ -117,31 +117,31 @@
       "slug": "obsidian",
       "name": "Obsidian",
       "summary": "Work with Obsidian vaults (plain Markdown notes) and automate via obsidian-cli.",
-      "downloads": 112541,
-      "stars": 462,
+      "downloads": 112542,
+      "stars": 463,
       "source_url": ""
     },
     {
       "slug": "openclaw-tavily-search",
       "name": "Tavily Search",
       "summary": "Search the public web through Tavily and return structured results with URLs and snippets. Use when an agent needs current information, source discovery, link lookup, news or finance search, or a fallback for unavailable built-in web search. Do not use for private or authenticated pages.",
-      "downloads": 109687,
-      "stars": 268,
+      "downloads": 109690,
+      "stars": 269,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/jacky1n7/openclaw-tavily-search"
     },
     {
       "slug": "nano-banana-pro",
       "name": "Nano Banana Pro",
       "summary": "Generate/edit images with Nano Banana Pro (Gemini 3 Pro Image). Use for image create/modify requests incl. edits. Supports text-to-image + image-to-image; 1K/2K/4K; use --input-image.",
-      "downloads": 108172,
-      "stars": 421,
+      "downloads": 108173,
+      "stars": 422,
       "source_url": ""
     },
     {
       "slug": "notion",
       "name": "Notion",
       "summary": "Notion API for creating and managing pages, databases, and blocks.",
-      "downloads": 105113,
+      "downloads": 105114,
       "stars": 274,
       "source_url": ""
     },
@@ -157,7 +157,7 @@
       "slug": "pollyreach",
       "name": "PollyReach",
       "summary": "PollyReach gives every AI agent a phone number and the ability to get things done over the phone — finding contacts, making calls, and completing tasks. Just...",
-      "downloads": 102115,
+      "downloads": 102116,
       "stars": 56,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/pollyreach/pollyreach"
     },
@@ -197,7 +197,7 @@
       "slug": "sonoscli",
       "name": "Sonoscli",
       "summary": "Control Sonos speakers (discover/status/play/volume/group).",
-      "downloads": 90605,
+      "downloads": 90607,
       "stars": 56,
       "source_url": ""
     },
@@ -205,7 +205,7 @@
       "slug": "openai-whisper",
       "name": "Openai Whisper",
       "summary": "Local speech-to-text with the Whisper CLI (no API key).",
-      "downloads": 90040,
+      "downloads": 90041,
       "stars": 341,
       "source_url": ""
     },
@@ -213,7 +213,7 @@
       "slug": "api-gateway",
       "name": "API Gateway",
       "summary": "Call third-party APIs through the Maton gateway, which injects the credential for an app the user has already connected.\nUse this skill when the user names a connected app and a concrete action in it - read a mailbox, query a CRM, file an issue, update a spreadsheet, etc.",
-      "downloads": 88040,
+      "downloads": 88042,
       "stars": 395,
       "source_url": ""
     },
@@ -277,7 +277,7 @@
       "slug": "mcporter",
       "name": "Mcporter",
       "summary": "Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.",
-      "downloads": 71433,
+      "downloads": 71434,
       "stars": 203,
       "source_url": ""
     },
@@ -293,7 +293,7 @@
       "slug": "find-skills-skill",
       "name": "Find Skills Skill",
       "summary": "Search and discover OpenClaw skills from various sources. Use when: user wants to find available skills, search for specific functionality, or discover new s...",
-      "downloads": 63432,
+      "downloads": 63436,
       "stars": 151,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/fangkelvin/find-skills-skill"
     },
@@ -301,8 +301,8 @@
       "slug": "desktop-control",
       "name": "Desktop Control",
       "summary": "Advanced desktop automation with mouse, keyboard, and screen control",
-      "downloads": 62819,
-      "stars": 383,
+      "downloads": 62820,
+      "stars": 384,
       "source_url": ""
     },
     {
@@ -341,7 +341,7 @@
       "slug": "powerpoint-pptx",
       "name": "Powerpoint / PPTX",
       "summary": "Create, inspect, and edit Microsoft PowerPoint presentations and PPTX decks with reliable layouts, templates, placeholders, notes, charts, and visual QA. Use...",
-      "downloads": 57598,
+      "downloads": 57599,
       "stars": 146,
       "source_url": ""
     },
@@ -349,7 +349,7 @@
       "slug": "youtube-watcher",
       "name": "YouTube Watcher",
       "summary": "Fetch and read transcripts from YouTube videos. Use when you need to summarize a video, answer questions about its content, or extract information from it.",
-      "downloads": 55956,
+      "downloads": 55957,
       "stars": 345,
       "source_url": ""
     },
@@ -381,7 +381,7 @@
       "slug": "pdf",
       "name": "Pdf",
       "summary": "Comprehensive PDF manipulation toolkit for extracting text and tables, creating new PDFs, merging/splitting documents, and handling forms. When Claude needs to fill in a PDF form or programmatically process, generate, or analyze PDF documents at scale.",
-      "downloads": 51495,
+      "downloads": 51496,
       "stars": 66,
       "source_url": ""
     },
@@ -389,8 +389,8 @@
       "slug": "imap-smtp-email",
       "name": "imap-smtp-email",
       "summary": "Read and send email via IMAP/SMTP. Check for new/unread messages, fetch content, search mailboxes, mark as read/unread, and send emails with attachments. Supports multiple accounts. Works with any IMAP/SMTP server including Gmail, Outlook, 163.com, vip.163.com, 126.com, vip.126.com, 188.com, and vip",
-      "downloads": 51332,
-      "stars": 108,
+      "downloads": 51333,
+      "stars": 109,
       "source_url": ""
     },
     {
@@ -437,7 +437,7 @@
       "slug": "tavily",
       "name": "Tavily AI Search",
       "summary": "AI-optimized web search using Tavily Search API. Use when you need comprehensive web research, current events lookup, domain-specific search, or AI-generated answer summaries. Tavily is optimized for LLM consumption with clean structured results, answer generation, and raw content extraction. Best for research tasks, news queries, fact-checking, and gathering authoritative sources.",
-      "downloads": 49086,
+      "downloads": 49088,
       "stars": 36,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/bert-builder/tavily"
     },
@@ -509,7 +509,7 @@
       "slug": "playwright",
       "name": "Playwright (Automation + MCP + Scraper)",
       "summary": "Automates, tests, and debugs browsers with Playwright: locators, auto-waiting, traces, CI runs, and MCP browser control. Use when a test is flaky, times out, or fails only in CI or headless; when a locator matches multiple elements or the wrong one (strict mode violation); when clicks need force, waits become sleeps, or networkidle never settles; for storageState and login setup, request mocking and HAR replay, uploads and downloads, iframes and shadow DOM, popups and dialogs, screenshot diffs that change per machine, trace and report artifacts, sharding a slow suite, device and permission emulation, accessibility checks, driving a real browser through Playwright MCP, extracting data from JS-rendered pages, or porting a Cypress, Puppeteer, or Selenium suite to Playwright. Not for maintaining an existing Cypress or Puppeteer suite (cypress, puppeteer) or for work a plain HTTP request answers (http).",
-      "downloads": 43551,
+      "downloads": 43552,
       "stars": 130,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ivangdavila/playwright"
     },
@@ -517,7 +517,7 @@
       "slug": "data-analysis",
       "name": "Data Analysis",
       "summary": "Data analysis and visualization. Query databases, generate reports, automate spreadsheets, and turn raw data into clear, actionable insights. Use when (1) yo...",
-      "downloads": 43507,
+      "downloads": 43508,
       "stars": 128,
       "source_url": ""
     },
@@ -613,7 +613,7 @@
       "slug": "gemini",
       "name": "Gemini",
       "summary": "Gemini CLI for one-shot Q&A, summaries, and generation.",
-      "downloads": 38873,
+      "downloads": 38874,
       "stars": 58,
       "source_url": ""
     },
@@ -645,7 +645,7 @@
       "slug": "agentmail",
       "name": "AgentMail",
       "summary": "API-first email platform designed for AI agents. Create and manage dedicated email inboxes, send and receive emails programmatically, and handle email-based workflows with webhooks and real-time events. Use when you need to set up agent email identity, send emails from agents, handle incoming email workflows, or replace traditional email providers like Gmail with agent-friendly infrastructure.",
-      "downloads": 37708,
+      "downloads": 37709,
       "stars": 66,
       "source_url": ""
     },
@@ -733,7 +733,7 @@
       "slug": "docker-essentials",
       "name": "Docker Essentials",
       "summary": "Essential Docker commands and workflows for container management, image operations, and debugging.",
-      "downloads": 34379,
+      "downloads": 34380,
       "stars": 41,
       "source_url": ""
     },
@@ -773,7 +773,7 @@
       "slug": "ai-ppt-generator",
       "name": "Baidu Wenku AIPPT",
       "summary": "Generate PPT with Baidu Wenku AI. Smart template selection based on content.",
-      "downloads": 33484,
+      "downloads": 33485,
       "stars": 56,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/ide-rea/ai-ppt-generator"
     },
@@ -781,7 +781,7 @@
       "slug": "ddg-web-search",
       "name": "DuckDuckGo Web Search",
       "summary": "Web search without an API key using DuckDuckGo Lite via web_fetch. Use as a fallback when web_search fails with missing_brave_api_key error, or whenever you...",
-      "downloads": 32885,
+      "downloads": 32886,
       "stars": 28,
       "source_url": "https://github.com/openclaw/skills/tree/main/skills/jakelin/ddg-web-search"
     },
